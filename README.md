@@ -5,7 +5,7 @@
 ## 주제
 
 후보
-  - investing.com
+  - [주식사이트](investing.com)
 
 ## 팀원
 
