@@ -1,0 +1,11 @@
+.Header{
+    margin-top: 2vh;
+    text-align: left;
+    height: 6vh;
+    margin-bottom: 2vh;
+    width: 100%;
+}
+.Header span{
+    margin-left: 2vw;
+    vertical-align: middle;
+}
