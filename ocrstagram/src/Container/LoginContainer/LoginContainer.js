@@ -11,6 +11,8 @@ class LoginContainer extends React.Component{
                     <p>Password</p>
                     {/* PassWord */}
                 </form>
+                    <p><a href="/user">Sign in</a></p>
+                    <p><a href="/signup">Sign up</a></p>
             </div>
         )
     }
