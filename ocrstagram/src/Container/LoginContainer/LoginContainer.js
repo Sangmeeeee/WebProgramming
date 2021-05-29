@@ -49,7 +49,7 @@ class LoginContainer extends React.Component{
                         <input type="submit" value="Sign in"/>
                     </p>
                 </form>
-                    <p><button onClick={window.location.href += "signup"}>Sign up</button></p>
+                    <p><button onClick={() => window.location.href+="signup"}>Sign up</button></p>
             </div>
         )
     }

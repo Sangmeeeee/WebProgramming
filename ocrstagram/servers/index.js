@@ -7,6 +7,7 @@ app.use(express.json())
 
 app.post('/', (req, res) => {
     console.log(req.body)
+    res.send('ok')
 })
 
 app.listen(8080, () => {
