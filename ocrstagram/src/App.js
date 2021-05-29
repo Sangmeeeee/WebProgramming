@@ -4,13 +4,14 @@ import {Header} from './Components'
 import {LoginContainer, UserContainer, SignupContainer} from './Container'
 import './App.css'
 
+
 function App() {
   return (
     <div className="App">
         <Header />
-        <Route exact path ="/" component={LoginContainer}/>
-        <Route path ="/user" component={UserContainer}/>
-        <Route path ="/signup" component={SignupContainer}/>
+        <Route exact path="/" component={LoginContainer}/>
+        <Route path="/user" component={UserContainer}/>
+        <Route path="/signup" component={SignupContainer}/>
     </div>
   );
 }
