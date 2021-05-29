@@ -11,3 +11,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+
+/* additional css */
+input:focus{
+  outline: none;
+}
+
+
+input[type="submit"], button{
+  border: none;
+  background-color: white;
+  color:gray
+}
+
+input[type="submit"]:hover, button:hover{
+  font-weight: bold;
+}

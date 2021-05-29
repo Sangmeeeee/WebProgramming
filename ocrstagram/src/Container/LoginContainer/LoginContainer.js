@@ -21,7 +21,7 @@ class LoginContainer extends React.Component{
         }).then(() => {
             window.location.href+="user"
         }).catch(() => {
-            console.error('error in axios')
+            console.error('error')
         })
     }
 
