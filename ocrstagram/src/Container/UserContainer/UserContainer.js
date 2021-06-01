@@ -1,5 +1,6 @@
 import React from 'react'
 import './UserContainer'
+import { UserInfo } from '../../Components'
 
 class UserContainer extends React.Component{
     constructor(props){
@@ -12,7 +13,7 @@ class UserContainer extends React.Component{
         */
         return(
             <div className="UserContainer">
-                <p>UserInfo</p>
+                <UserInfo></UserInfo>
                 <p>Posts</p>
             </div>
         )
