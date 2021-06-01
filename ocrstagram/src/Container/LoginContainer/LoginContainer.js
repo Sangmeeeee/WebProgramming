@@ -15,7 +15,9 @@ class LoginContainer extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault()
-        window.location.href="/user"
+
+        window.location.href="/user" // 임시 저장
+
         axios.post(url,{
             id : this.state.ID,
             pw : this.state.PW

@@ -9,11 +9,11 @@ function App() {
   return (
     <div className="App">
         <Header />
-        <Route exact path="/" component={LoginContainer}/>
-        <Route path="/user" component={UserContainer}/>
-        <Route path="/signup" component={SignupContainer}/>
+        <Route exact path="/" component={LoginContainer}/> {/* 로그인 창 -> 맨 처음화면*/}
+        <Route path="/user" component={UserContainer}/> {/* 사용자 정보 -> 로그인 성공시 나오는 화면*/}
+        <Route path="/signup" component={SignupContainer}/> {/*  회원가입 */}
     </div>
-  );
+  )
 }
 
 export default App;
