@@ -15,11 +15,12 @@ class LoginContainer extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault()
+        window.location.href="/user"
         axios.post(url,{
             id : this.state.ID,
             pw : this.state.PW
         }).then(() => {
-            window.location.href+="user"
+            window.location.href="/user"
         }).catch(() => {
             console.error('error')
         })
@@ -40,16 +41,16 @@ class LoginContainer extends React.Component{
             <div className="LoginContainer">
                 <form className="LoginForm" onSubmit={this.handleSubmit}>
                     <p>
-                        <input type="text" name="ID" placeholder="ID" onChange={this.handleID}></input>
+                        <input type="text" name="ID" placeholder="ID" onChange={this.handleID} required></input>
                     </p>
                     <p>
-                        <input type="password" name="PW" placeholder="PW" onChange={this.handlePW}></input>
+                        <input type="password" name="PW" placeholder="PW" onChange={this.handlePW} required></input>
                     </p>
                     <p>
                         <input type="submit" value="Sign in"/>
                     </p>
                 </form>
-                    <p><button onClick={() => window.location.href+="signup"}>Sign up</button></p>
+                    <p><button onClick={() => window.location.href="/signup"}>Sign up</button></p>
             </div>
         )
     }
