@@ -13,8 +13,7 @@ class UserInfo extends React.Component{
 
     handlePosting = (e) => {
         e.preventDefault()
-        // document.getElementsByClassName('posting')[0].style.visibility='visible'
-        console.log(document.getElementsByClassName('UserInfo')[0].appendChild(<div>aaa</div>))
+        document.getElementsByClassName('Posting')[0].style.visibility = 'visible'
     }
 
     render(){
@@ -23,6 +22,7 @@ class UserInfo extends React.Component{
                 <p>{this.state.ID}</p>
                 <p>this is UserInfo</p>
                 <button onClick={this.handlePosting}>+</button>
+                <Posting />
             </div>
         )
     }

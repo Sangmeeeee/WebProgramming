@@ -1,4 +1,4 @@
-.posting{
+.Posting{
     background-color: gray;
     width: 100%;
     height: 100%;
@@ -10,4 +10,9 @@
     background: rgba(0,0,0,0.5);
     visibility: hidden;
     text-align: center;
+}
+
+.Posting img{
+    width: 50%;
+    border: 1px solid black;
 }
