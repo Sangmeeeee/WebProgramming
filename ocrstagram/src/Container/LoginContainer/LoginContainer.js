@@ -2,7 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import { Router } from 'react-router'
 import './LoginContainer.css'
-const url = 'http://localhost:8080/user/'
+const url = 'http://localhost:8080/'
 
 class LoginContainer extends React.Component{
     constructor(props) {
@@ -15,11 +15,12 @@ class LoginContainer extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault()
-        axios.post(url,{
+        axios.post(`http://localhost:8080/${this.state.ID}`,{
             id : this.state.ID,
             pw : this.state.PW
         }).then((result) => {
-            window.location.href=`/user/${this.state.ID}`
+            // this.props.location.id=`${this.state.ID}`
+            window.location.href=`/${this.state.ID}`
         }).catch(() => {
             console.error('error')
         })

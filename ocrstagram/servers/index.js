@@ -2,14 +2,15 @@ const express = require('express')
 const cors = require('cors')
 const multipart = require('multiparty')
 const app = express()
+const fileUpload = require('express-fileupload')
+
 
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
-app.post('/user/:id/ocr', (req, res, next) => {
+app.post('/:id/ocr', (req, res, next) => {
     var form = new multipart.Form({maxFieldsSize:'15MB'})
-
     form.on('error',next)
 
     form.on('close', () => {
@@ -18,30 +19,45 @@ app.post('/user/:id/ocr', (req, res, next) => {
     })
     form.on('field', (name, val) => {
         if(name !== 'text') return
-        console.log('filed')
+        // console.log('filed')
         console.log(name, val)
     })
     form.on('part', (part) => {
         if(!part.filename) return
         if(part.name !== 'img') return part.resume()
-        console.log('part')
-        console.log(part.filename)
+        // console.log(part)
         part.on('data', () => {
-            // console.log('a')
+
         })
     })
     form.parse(req)
 })
 
-app.post('/user/:id/post', (req, res) => {
-    console.log(req.params)
-    console.log(req.body)
-    res.send('ok')
+app.post('/:id/post', (req, res, next) => {
+    var form = new multipart.Form({maxFieldsSize:'15MB'})
+    form.on('error',next)
+
+    form.on('close', () => {
+        console.log('send')
+        res.send('hello')
+    })
+    form.on('field', (name, val) => {
+        if(name !== 'text') return
+        // console.log('filed')
+        console.log(name, val)
+    })
+    form.on('part', (part, data) => {
+        if(!part.filename) return
+        if(part.name !== 'img') return part.resume()
+        // console.log(part)
+        part.on('data', () => {
+
+        })
+    })
+    form.parse(req)
 })
 
-
-app.post('/user', (req, res) => {
-    console.log(req.params)
+app.post('/:id', (req, res) => {
     console.log(req.body)
     res.send('ok')
 })

@@ -5,10 +5,6 @@ import './UserInfo.css'
 class UserInfo extends React.Component{
     constructor(props){
         super(props)
-        this.state = {
-            ID : null,
-            PW : null
-        }
     }
 
     handlePosting = (e) => {
@@ -16,13 +12,16 @@ class UserInfo extends React.Component{
         document.getElementsByClassName('Posting')[0].style.visibility = 'visible'
     }
 
+    componentDidMount = () => {
+        console.log(this.props.location)
+    }
+
     render(){
         return(
             <div className='UserInfo'>
-                <p>{this.state.ID}</p>
+                <p>{this.props.id}</p>
                 <p>this is UserInfo</p>
                 <button onClick={this.handlePosting}>+</button>
-                <Posting />
             </div>
         )
     }

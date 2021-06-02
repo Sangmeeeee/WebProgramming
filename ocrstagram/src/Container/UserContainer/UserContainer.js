@@ -1,19 +1,21 @@
 import React from 'react'
 import './UserContainer'
-import { UserInfo } from '../../Components'
+import cookie from 'react-cookies'
+import { Posting, UserInfo,  } from '../../Components'
 
 class UserContainer extends React.Component{
     constructor(props){
         super(props)
+        this.state={
+            id : cookie.load('id') || 'testing',
+        }
     }
 
     render(){
-        /* 게시글 업로드 창 
-            사진, 텍스트필드
-        */
         return(
             <div className="UserContainer">
-                <UserInfo></UserInfo>
+                <UserInfo props={this.props} id={this.state.id}></UserInfo>
+                <Posting props={this.props} id={this.state.id}/>
                 <p>Posts</p>
             </div>
         )
