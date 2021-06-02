@@ -4,25 +4,44 @@ const multipart = require('multiparty')
 const app = express()
 
 app.use(cors())
+app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
-app.post('/user/ocr', (req, res, next) => {
+app.post('/user/:id/ocr', (req, res, next) => {
     var form = new multipart.Form({maxFieldsSize:'15MB'})
 
+    form.on('error',next)
+
     form.on('close', () => {
-        res.send('ok')
+        console.log('send')
+        res.send('hello')
     })
     form.on('field', (name, val) => {
-        console.log(name)
-        console.log(val)
+        if(name !== 'text') return
+        console.log('filed')
+        console.log(name, val)
     })
     form.on('part', (part) => {
+        if(!part.filename) return
+        if(part.name !== 'img') return part.resume()
+        console.log('part')
         console.log(part.filename)
+        part.on('data', () => {
+            // console.log('a')
+        })
     })
     form.parse(req)
 })
 
-app.post('/user/post', (req, res) => {
+app.post('/user/:id/post', (req, res) => {
+    console.log(req.params)
+    console.log(req.body)
+    res.send('ok')
+})
+
+
+app.post('/user', (req, res) => {
+    console.log(req.params)
     console.log(req.body)
     res.send('ok')
 })

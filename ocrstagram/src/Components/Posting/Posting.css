@@ -6,13 +6,18 @@
     position: fixed;
     left: 0px;
     top:0px;
-    /* opacity: 0.5; */
     background: rgba(0,0,0,0.5);
     visibility: hidden;
     text-align: center;
 }
 
 .Posting img{
+    max-width: 80%;
     width: 50%;
-    border: 1px solid black;
+    /* object-fit: contain; */
 }
+
+  
+input[type="file"]{
+    visibility: hidden;
+  }

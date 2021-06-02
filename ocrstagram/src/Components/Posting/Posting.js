@@ -11,28 +11,28 @@ class Posting extends React.Component{
     }
 
     handleOcr = (e) => {
-        console.log('call OCR')
-        const fd = new FormData()
+        let fd = new FormData()
         fd.append('img',this.state.img)
-        axios.post('http://localhost:8080/user/ocr',fd,{
+        axios.post(`http://localhost:8080/user/y2kwoo/ocr`,fd,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
         })
         .then((result) => {
-            console.log(result)
+            document.getElementsByClassName('result')[0].value = result.data
         })
         .catch((err) => {
-
+            console.error(err)
         })
     }
 
     handleUpload = (e) => {
-        const fd = new FormData()
+        let fd = new FormData()
+
         fd.append('img',this.state.img)
-        // console.log(document.getElementsByClassName('Result')[0].value)
-        fd.append('text',document.getElementsByClassName('Result')[0].value)
-        axios.post('http://localhost:8080/user/upload',fd,{
+        fd.append('text',document.getElementsByClassName('result')[0].value)
+
+        axios.post(`http://localhost:8080/user/y2kwoo/upload`,fd,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
@@ -41,17 +41,19 @@ class Posting extends React.Component{
             console.log(result)
         })
         .catch((err) => {
-
+            console.error(err)
         })
     }
     
     handleFile = (e) => {
         let fileReader = new FileReader()
         let file = e.target.files[0]
-        fileReader.onload = () => {
+
+        fileReader.addEventListener('load', () => {
             this.setState({img:file})
-                document.getElementsByClassName('uploadImg')[0].src = fileReader.result  
-        }
+            document.getElementsByClassName('uploadImg')[0].src = fileReader.result  
+        })
+
         fileReader.readAsDataURL(file)
     }
 
@@ -59,7 +61,7 @@ class Posting extends React.Component{
         return(
             <div className='Posting'>
 
-                <button onClick={/*() => document.getElementsByClassName('Posting')[0].style.visibility='hidden'*/ () => window.location.href='/user'}>X</button>
+                <button onClick={() => document.getElementsByClassName('Posting')[0].style.visibility = 'hidden'}>X</button>
 
                 <div onClick={this.handleOcr}>
                     <img className='uploadImg'></img>
@@ -70,9 +72,12 @@ class Posting extends React.Component{
                 </p>
 
                 <p>
-                    <textarea className='Result'></textarea>
+                    <textarea  rows='10' cols='10'  className='result'></textarea>
                 </p>
                 
+                <p>
+                <button onClick={() => document.getElementById('img').click()}>사진선택</button>
+                </p>
                 <p>
                     <button onClick={this.handleUpload}>업로드</button>
                 </p>
