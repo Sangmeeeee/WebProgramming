@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React from 'react'
-import { Router } from 'react-router'
 import './LoginContainer.css'
+import cookie from 'react-cookies'
 const url = 'http://localhost:8080/'
 
 class LoginContainer extends React.Component{
@@ -9,21 +9,31 @@ class LoginContainer extends React.Component{
         super(props)
         this.state = {
             ID : null,
-            PW : null
+            PW : null,
         }
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
-        axios.post(`http://localhost:8080/${this.state.ID}`,{
+        axios.post(`http://118.129.146.81:8080/${this.state.ID}`,{
             id : this.state.ID,
             pw : this.state.PW
-        }).then((result) => {
-            // this.props.location.id=`${this.state.ID}`
+        },{withCreadentials: true}).then((result) => {
+            console.log(result.data)
+            const expires = new Date()
+            expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14)
+    
+            cookie.save('id',result.data,{
+                path:'/',
+                expires,
+            })
+
             window.location.href=`/${this.state.ID}`
+
         }).catch(() => {
             console.error('error')
         })
+
     }
 
     handleID = (e) => {

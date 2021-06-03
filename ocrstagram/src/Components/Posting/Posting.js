@@ -1,20 +1,24 @@
 import axios from 'axios'
 import React from 'react'
+import cookie from 'react-cookies'
 import './Posting.css'
 const url = ''
 
 let style = {
     width:'40%',
-    height:'60%',
+    height:'40%',
+    maxHeight:'400px',
+    maxWidth:'400px',
     backgroundColor:'black',
-    display:'inline-block'
+    display:'inline-block',
+    
 }
 
 class Posting extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            id : this.props.id,
+            id : cookie.load('id'),
             img : null,
         }
     }
@@ -22,11 +26,12 @@ class Posting extends React.Component{
     handleOcr = (e) => {
         let fd = new FormData()
         fd.append('img',this.state.img)
-        axios.post(`http://localhost:8080/${this.props.id}/ocr`,fd,{
+        axios.post(`http://118.129.146.81:8080/${this.props.id}/ocr`,fd,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
-        })
+        },{withCreadentials: true}
+        )
         .then((result) => {
             document.getElementsByClassName('result')[0].value = result.data
         })
@@ -42,7 +47,7 @@ class Posting extends React.Component{
 
         fd.append('text',document.getElementsByClassName('result')[0].value)
 
-        axios.post(`http://localhost:8080/${this.state.id}/post`,fd,{
+        axios.post(`http://118.129.146.81:8080/${this.state.id}/post`,fd,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
