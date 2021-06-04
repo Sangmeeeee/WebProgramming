@@ -1,5 +1,6 @@
 import React from 'react'
 import {Posting} from '../index'
+import cookie from 'react-cookies'
 import './UserInfo.css'
 
 class UserInfo extends React.Component{
@@ -10,10 +11,6 @@ class UserInfo extends React.Component{
     handlePosting = (e) => {
         e.preventDefault()
         document.getElementsByClassName('Posting')[0].style.visibility = 'visible'
-    }
-
-    componentDidMount = () => {
-        console.log(this.props.location)
     }
 
     render(){

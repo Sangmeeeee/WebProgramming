@@ -11,7 +11,7 @@ function App() {
         <Header />
         <Route exact path="/" component={LoginContainer}/> {/* 로그인 창 -> 맨 처음화면*/}
         <Route exact path="/:id" component={UserContainer}/> {/* 사용자 정보 -> 로그인 성공시 나오는 화면*/}
-        <Route exact path="/signup" component={SignupContainer}/> {/*  회원가입 */}
+        <Route exact path="/signup" component={SignupContainer}/> {/*  회원가입 라우팅이 겹치기때문에 바꿔줘야함 */}
     </div>
   )
 }

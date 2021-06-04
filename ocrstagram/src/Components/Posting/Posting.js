@@ -11,14 +11,13 @@ let style = {
     maxWidth:'400px',
     backgroundColor:'black',
     display:'inline-block',
-    
 }
 
 class Posting extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            id : cookie.load('id'),
+            id : props.id,
             img : null,
         }
     }
@@ -26,7 +25,7 @@ class Posting extends React.Component{
     handleOcr = (e) => {
         let fd = new FormData()
         fd.append('img',this.state.img)
-        axios.post(`http://118.129.146.81:8080/${this.props.id}/ocr`,fd,{
+        axios.post(`http://118.129.146.81:8080/${this.state.id}/ocr`,fd,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
@@ -91,7 +90,7 @@ class Posting extends React.Component{
                 </p>
 
                 <p>
-                    <textarea  rows='10' cols='70' className='result'></textarea>
+                    <textarea rows='10' cols='70' className='result'></textarea>
                 </p>
                 
                 <p>

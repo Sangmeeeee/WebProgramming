@@ -7,7 +7,7 @@ class UserContainer extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            id : cookie.load('id') || 'testing',
+            id : cookie.load('id'),
         }
     }
 
@@ -16,7 +16,9 @@ class UserContainer extends React.Component{
             <div className="UserContainer">
                 <UserInfo props={this.props} id={this.state.id}></UserInfo>
                 <Posting props={this.props} id={this.state.id}/>
-                <p>Posts</p>
+
+
+                <p>Posted img area</p>
             </div>
         )
     }
