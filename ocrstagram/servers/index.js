@@ -8,6 +8,7 @@ const fs = require('fs')
 const path = require('path')
 const imgOcrController = require('./controllers/imgOcr');
 const storeUserController = require('./controllers/storeUser');
+const storePostController = require('./controllers/storePost')
 const mongoose = require('mongoose')
 
 mongoose.connect('mongodb+srv://twknds:!!0906wkd@cluster0.udzlq.mongodb.net/test', {
@@ -26,11 +27,7 @@ app.use(express.static('public'))
 // upload img & request ocr
 app.post('/:id/ocr', imgOcrController);
 
-app.post('/:id/post',(req,res) => {
-    res.send('post img and text to server')
-    console.log(req.files)
-    console.log(req.body)
-})
+app.post('/:id/post', storePostController)
 
 app.post('/:id', (req, res) => {
     console.log(req.body)
@@ -43,7 +40,7 @@ app.post('/:id', (req, res) => {
     }
 })
 
-//app.post('/user/register', storeUserController);
+// app.post('/user/register', storeUserController);
 
 app.listen(8080, () => {
     console.log('8080 port is open')
