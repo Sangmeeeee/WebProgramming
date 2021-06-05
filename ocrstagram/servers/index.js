@@ -9,6 +9,7 @@ const path = require('path')
 const imgOcrController = require('./controllers/imgOcr');
 const storeUserController = require('./controllers/storeUser');
 const storePostController = require('./controllers/storePost')
+const loginUserController = require('./controllers/loginUser')
 const mongoose = require('mongoose')
 
 mongoose.connect('mongodb+srv://twknds:!!0906wkd@cluster0.udzlq.mongodb.net/test', {
@@ -22,23 +23,30 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cookieParser())
 app.use(fileUpload())
-app.use(express.static('public'))
+
+
+app.use(express.static('../public'))
+
+/* 실제 배포를 위해선
+app.use(cors())
+app.use(express.static('../public'))
+를 주석처리해주고 아래 부분의 주석을 해제해준다.
+*/
+
+
+// app.use(express.static('../build'))
+
+// app.get('*', (req, res, next) => {
+//     if(req.path.split('/')[1] === 'static') return next();
+//     res.sendFile(path.resolve(__dirname, '../build/index.html'));
+// });
 
 // upload img & request ocr
 app.post('/:id/ocr', imgOcrController);
 
 app.post('/:id/post', storePostController)
 
-app.post('/:id', (req, res) => {
-    console.log(req.body)
-    console.log(req)
-    res.send(req.body.id)
-    console.log(path.resolve(__dirname,'..','public/img'))
-    if(!fs.existsSync(`${path.resolve(__dirname,'..','public/img')}/${req.body.id}`)){
-        console.log('create folder')
-        fs.mkdirSync(`${path.resolve(__dirname,'..','public/img')}/${req.body.id}`)
-    }
-})
+app.post('/:id', loginUserController)
 
 // app.post('/user/register', storeUserController);
 
