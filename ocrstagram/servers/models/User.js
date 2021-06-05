@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
-const bcrypt = require('bcryptjs')
+// const bcrypt = require('bcryptjs')
  
 const UserSchema = new Schema({  
     userid: { // pass in config object. and put in validation rules 
@@ -10,7 +10,6 @@ const UserSchema = new Schema({
     },
     pw: {
       type: String,
-      required: true
     }
   });
 
