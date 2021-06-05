@@ -27,7 +27,7 @@ function LoginPage() {
       const expires = new Date()
             expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14)
     
-            cookie.save('id',result.data,{
+            cookie.save('id',ID,{
                 path:'/',
                 expires,
             })
