@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './LoginContainer.css'
 import axios from 'axios'
 import { Button, Form, Grid, Header, Image, Message, Segment, Icon } from 'semantic-ui-react'
+import cookie from 'react-cookies'
 
 function LoginPage() {
   const [ID, setId] = useState("")
@@ -22,6 +23,15 @@ function LoginPage() {
       pw : Password
     }).then((result) => {
       console.log(result.data)
+
+      const expires = new Date()
+            expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14)
+    
+            cookie.save('id',result.data,{
+                path:'/',
+                expires,
+            })
+
       window.location.href=`/${ID}`
     }).catch((err) => {
       console.error(err)
