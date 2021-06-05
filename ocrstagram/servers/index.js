@@ -26,7 +26,6 @@ app.post('/:id/ocr', asyncHandler(async (req, res, next) => {
           res.send("Same filename exists")
         }
         else {
-            // should handle duplicate file error
             img.mv(imgPath, async(err) => {
                 console.log('upload img to server')
             })
