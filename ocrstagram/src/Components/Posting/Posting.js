@@ -2,15 +2,16 @@ import axios from 'axios'
 import React from 'react'
 import cookie from 'react-cookies'
 import './Posting.css'
+import { Card, Button,Icon, Image, Container } from 'semantic-ui-react'
+
 const url = ''
 
 let style = {
-    width:'40%',
-    height:'40%',
+    width:'100%',
+    height:'100%',
     maxHeight:'400px',
     maxWidth:'400px',
-    backgroundColor:'black',
-    display:'inline-block',
+    backgroundColor:'white',
 }
 
 class Posting extends React.Component{
@@ -32,7 +33,8 @@ class Posting extends React.Component{
         },{withCreadentials: true}
         )
         .then((result) => {
-            document.getElementsByClassName('result')[0].value = result.data
+            // document.getElementsByClassName('result')[0].value = result.data
+            document.getElementsByClassName('description')[0].appendChild(document.createTextNode(result.data))
         })
         .catch((err) => {
             console.error(err)
@@ -44,7 +46,8 @@ class Posting extends React.Component{
 
         fd.append('img',this.state.img)
 
-        fd.append('text',document.getElementsByClassName('result')[0].value)
+        console.log(document.getElementsByClassName('description')[0].innerHTML)
+        fd.append('text',document.getElementsByClassName('description')[0].innerHTML)
 
         axios.post(`http://localhost:8080/${this.state.id}/post`,fd,{
             headers:{
@@ -64,8 +67,7 @@ class Posting extends React.Component{
         let file = e.target.files[0]
 
         document.getElementsByClassName('uploadImg')[0].style.width = '100%'
-        document.getElementsByClassName('uploadImg')[0].style.heigt = '100%'
-
+        document.getElementsByClassName('uploadImg')[0].style.height = '100%'
 
         fileReader.addEventListener('load', () => {
             this.setState({img:file})
@@ -78,28 +80,29 @@ class Posting extends React.Component{
     render(){
         return(
             <div className='Posting'>
-                <p>
-                    <button onClick={() => document.getElementsByClassName('Posting')[0].style.visibility = 'hidden'}>X</button>
-                </p>
-                <div style={style} onClick={this.handleOcr}>
-                    <img className='uploadImg'></img>
-                </div>
+                <Container  style={{height:'100%'}} textAlign='center'>
+                    <div style={{position:'absolute',left:'50%',transform:'translate(-50%,50%)',height:'50%'}}  className="ui card">
+                        <div style={{height:'50%'}} className="image">
+                            <div style={style} onClick={this.handleOcr}>
+                                <img className='uploadImg' src="/images/avatar/large/matthew.png"/>
+                            </div>
+                        </div>
 
-                <p>
-                    <input name='img' id='img' type='file' onChange={this.handleFile.bind(this)}></input>
-                </p>
-
-                <p>
-                    <textarea rows='10' cols='70' className='result'></textarea>
-                </p>
-                
-                <p>
-                <button onClick={() => document.getElementById('img').click()}>사진선택</button>
-                </p>
-
-                <p>
-                    <button onClick={this.handleUpload}>업로드</button>
-                </p>
+                        <div style={{height:'30%'}}className="content">
+                            <div style={{overflowY: 'auto',height:'100%'}}className="description">
+                                
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <Button.Group color='black'>
+                                <Button onClick={() => document.getElementById('img').click()} >사진선택</Button>
+                                <Button onClick={this.handleUpload}>업로드</Button>
+                                <Button onClick={() => document.getElementsByClassName('Posting')[0].style.visibility = 'hidden'}>X</Button>
+                            </Button.Group>
+                        </div>
+                    </div>
+                </Container>
+                <input name='img' id='img' type='file' onChange={this.handleFile.bind(this)}></input>
             </div>
         )}
 }
