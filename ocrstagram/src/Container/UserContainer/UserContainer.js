@@ -13,32 +13,60 @@ class UserContainer extends React.Component{
     }
 
     render(){
-        return(
-            <div className="UserContainer">
-                {/* <UserInfo props={this.props} id={this.state.id}></UserInfo> */}
-                    <Container textAlign='right'>
-                        <Button color='black' onClick={() => document.getElementsByClassName('Posting')[0].style.visibility= 'visible'}  animated='fade'>
-                            <Button.Content visible>+</Button.Content>
-                            <Button.Content hidden> Posting </Button.Content>
-                        </Button>
-                    </Container>
-                    <Container textAlign='left'>
-                        <Header as='h2'>
-                            <Image circular src='/images/avatar/large/patrick.png' /> {this.state.id}
-                        </Header>
-                    </Container>
-                    {/* <Container textAlign='center'>Center Aligned</Container> */}
-                    {/* <Container textAlign='justified'> */}
-                    {/* <b>Justified</b>
-                    <Divider /> */}
-                    {/* </Container> */}
-                    <Divider />
+        if(this.props.match.params.id === this.state.id)
+            return(
+                <div className="UserContainer">
+                    {/* <UserInfo props={this.props} id={this.state.id}></UserInfo> */}
+                        <Container textAlign='right'>
+                            <Button color='black' onClick={() => document.getElementsByClassName('Posting')[0].style.visibility= 'visible'}  animated='fade'>
+                                <Button.Content visible>+</Button.Content>
+                                <Button.Content hidden> Posting </Button.Content>
+                            </Button>
+                        </Container>
+                        <Container textAlign='left'>
+                            <Header as='h2'>
+                                <Image circular src='/images/avatar/large/patrick.png' /> {this.props.match.params.id}
+                            </Header>
+                        </Container>
+                        {/* <Container textAlign='center'>Center Aligned</Container> */}
+                        {/* <Container textAlign='justified'> */}
+                        {/* <b>Justified</b>
+                        <Divider /> */}
+                        {/* </Container> */}
+                        <Divider />
 
-                <p>Posted img area</p>
+                    <p>Posted img area</p>
 
-                <Posting props={this.props} id={this.state.id}/>
-            </div>
-        )
+                    <Posting props={this.props} id={this.state.id}/>
+                </div>
+            )
+        else
+            return(
+                <div className="UserContainer">
+                    {/* <UserInfo props={this.props} id={this.state.id}></UserInfo> */}
+                        <Container textAlign='right'>
+                            <Button color='black' disabled='true' onClick={() => document.getElementsByClassName('Posting')[0].style.visibility= 'visible'}  animated='fade'>
+                                <Button.Content visible>+</Button.Content>
+                                <Button.Content hidden> Posting </Button.Content>
+                            </Button>
+                        </Container>
+                        <Container textAlign='left'>
+                            <Header as='h2'>
+                                <Image circular src='/images/avatar/large/patrick.png' /> {this.props.match.params.id}
+                            </Header>
+                        </Container>
+                        {/* <Container textAlign='center'>Center Aligned</Container> */}
+                        {/* <Container textAlign='justified'> */}
+                        {/* <b>Justified</b>
+                        <Divider /> */}
+                        {/* </Container> */}
+                        <Divider />
+
+                    <p>Posted img area</p>
+
+                    <Posting props={this.props} id={this.state.id}/>
+                </div>
+            )
     }
 }
 

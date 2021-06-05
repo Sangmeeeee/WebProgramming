@@ -9,14 +9,13 @@ const url = ''
 let style = {
     width:'100%',
     height:'100%',
-    maxHeight:'400px',
-    maxWidth:'400px',
     backgroundColor:'white',
 }
 
 class Posting extends React.Component{
     constructor(props){
         super(props)
+        console.log(this.props.props.match.params.id)
         this.state = {
             id : props.id,
             img : null,
@@ -81,8 +80,8 @@ class Posting extends React.Component{
         return(
             <div className='Posting'>
                 <Container  style={{height:'100%'}} textAlign='center'>
-                    <div style={{position:'absolute',left:'50%',transform:'translate(-50%,50%)',height:'50%'}}  className="ui card">
-                        <div style={{height:'50%'}} className="image">
+                    <div style={{position:'absolute',left:'50%',top:'50%',transform:'translate(-50%,-50%)',height:'70%', width:'30%'}}  className="ui card">
+                        <div style={{height:'50%', width:'100%'}} className="image">
                             <div style={style} onClick={this.handleOcr}>
                                 <img className='uploadImg' src="/images/avatar/large/matthew.png"/>
                             </div>
