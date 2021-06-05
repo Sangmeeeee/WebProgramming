@@ -9,3 +9,8 @@
     margin-left: 2vw;
     vertical-align: middle;
 }
+#homebtn{
+  position: fixed;
+  top:40px;
+  right: 40px;
+}

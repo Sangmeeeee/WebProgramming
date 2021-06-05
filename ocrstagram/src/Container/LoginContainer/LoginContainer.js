@@ -1,69 +1,73 @@
-import axios from 'axios'
-import React from 'react'
+import React, { Component, useState } from 'react'
+import { Link } from 'react-router-dom'
 import './LoginContainer.css'
-import cookie from 'react-cookies'
-const url = 'http://localhost:8080/'
+import axios from 'axios'
+import { Button, Form, Grid, Header, Image, Message, Segment, Icon } from 'semantic-ui-react'
 
-class LoginContainer extends React.Component{
-    constructor(props) {
-        super(props)
-        this.state = {
-            ID : null,
-            PW : null,
-        }
-    }
+function LoginPage() {
+  const [ID, setId] = useState("")
+  const [Password, setPassword] = useState("")
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-        axios.post(`http://localhost:8080/${this.state.ID}`,{
-            id : this.state.ID,
-            pw : this.state.PW
-        },{withCreadentials: true}).then((result) => {
-            console.log(result.data)
-            const expires = new Date()
-            expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14)
-    
-            cookie.save('id',result.data,{
-                path:'/',
-                expires,
-            })
+  const onIDHandler = (event) => {
+    setId(event.currentTarget.value);
+  }
 
-            window.location.href=`/${this.state.ID}`
+  const onPasswordHandler = (event) => {
+    setPassword(event.currentTarget.value);
+  }
 
-        }).catch(() => {
-            console.error('error')
-        })
+  const onSubmitHandler = (event) => {
+    axios.post(`http://localhost:8080/${ID}`,{
+      id: ID,
+      pw : Password
+    }).then((result) => {
+      console.log(result.data)
+      window.location.href=`/${ID}`
+    }).catch((err) => {
+      console.error(err)
+    })
 
-    }
+  }
 
-    handleID = (e) => {
-        this.setState({ ID : e.target.value });
-        e.preventDefault()
-    }
-
-    handlePW = (e) => {
-        this.setState({ PW : e.target.value });
-        e.preventDefault()
-    }
-
-    render(){
-        return(
-            <div className="LoginContainer">
-                <form className="LoginForm" onSubmit={this.handleSubmit}>
-                    <p>
-                        <input type="text" name="ID" placeholder="ID" onChange={this.handleID} required></input>
-                    </p>
-                    <p>
-                        <input type="password" name="PW" placeholder="PW" onChange={this.handlePW} required></input>
-                    </p>
-                    <p>
-                        <input type="submit" value="Sign in"/>
-                    </p>
-                </form>
-                    <p><button onClick={() => window.location.href="/signup"}>Sign up</button></p>
+  return (
+    <Grid id="loginGrid" textAlign='center' style={{ height: '100vh'}} >
+      <Grid.Column style={{ maxWidth: 450 }}>
+        <Header as='h2' color='teal' textAlign='center'>
+          {/* <Image id="logo" src='./images/ocrstagram.png' /> */}
+        </Header>
+        <Form size='large' method="POST" onSubmit={onSubmitHandler}>
+          <Segment stacked>
+            <Form.Input fluid icon='user' iconPosition='left' placeholder='ID' required='true' value={ID} onChange={onIDHandler} />
+            <Form.Input
+              fluid
+              icon='lock'
+              iconPosition='left'
+              placeholder='Password'
+              type='password'
+              required='true'
+              value={Password}
+              onChange={onPasswordHandler}
+            />
+            <div>
+              <Button type='submit' animated='fade' color='black' fluid="large">
+                <Button.Content visible>Login</Button.Content>
+                <Button.Content hidden><Icon name='arrow right' /></Button.Content>
+              </Button>
             </div>
-        )
-    }
+            <div id="sign-up">
+              <Link to="./a/register">
+                <Button animated='fade' color='black' fluid size='large'>
+                  <Button.Content visible>New to us?</Button.Content>
+                  <Button.Content hidden>Sign Up!</Button.Content>
+                </Button>
+              </Link>
+            </div>
+          </Segment>
+        </Form>
+      </Grid.Column>
+    </Grid>
+  )
+
 }
 
-export default LoginContainer
+export default LoginPage

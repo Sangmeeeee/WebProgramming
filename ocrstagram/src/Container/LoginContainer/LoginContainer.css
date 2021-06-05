@@ -1,30 +1,14 @@
-.LoginContainer{
-    text-align: center;
-    vertical-align: middle;
-    position: absolute;
-    /* border: 1px solid black; */
-    max-width: 100%;
-    width: 300px;
-    height: auto;
-    top : 50%;
-    transform : translate(-50%,-50%); /* Header 만큼 */
-    right: 50%;
-    left: 50%;
+#loginGrid {
+  align-content: center;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
-input:focus{
-    outline: none;
-  }
-  
-  
-  input[type="submit"],button{
-    border: none;
-    background-color: white;
-    color:gray;
-  }
+#logo {
+  height: 30px;
+  width: 300px;
+}
 
-
-
-  input[type="submit"]:hover, button:hover{
-    font-weight: bold;
-  }
+#sign-up {
+  margin-top: 10px
+}
