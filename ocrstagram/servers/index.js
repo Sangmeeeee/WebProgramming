@@ -8,6 +8,13 @@ const fs = require('fs')
 const path = require('path')
 const imgOcrController = require('./controllers/imgOcr');
 const storeUserController = require('./controllers/storeUser');
+const mongoose = require('mongoose')
+
+mongoose.connect('mongodb+srv://twknds:!!0906wkd@cluster0.udzlq.mongodb.net/test', {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true    
+});
 
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
@@ -36,7 +43,7 @@ app.post('/:id', (req, res) => {
     }
 })
 
-app.post('/user/register', storeUserController);
+//app.post('/user/register', storeUserController);
 
 app.listen(8080, () => {
     console.log('8080 port is open')
