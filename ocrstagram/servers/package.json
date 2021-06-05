@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./index.js"
+    "start": "nodemon --ignore '*.traineddata' ./index.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,9 +13,11 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "express-fileupload": "^1.2.1",
     "multer": "^1.4.2",
-    "multiparty": "^4.2.2"
+    "multiparty": "^4.2.2",
+    "tesseract.js": "^2.1.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
