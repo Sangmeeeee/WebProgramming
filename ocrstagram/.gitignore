@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+*/node_modules
 /.pnp
 .pnp.js
 
@@ -11,7 +12,11 @@
 # production
 /build
 
+# public
+/public/img
+
 # misc
+.vscode
 .DS_Store
 .env.local
 .env.development.local

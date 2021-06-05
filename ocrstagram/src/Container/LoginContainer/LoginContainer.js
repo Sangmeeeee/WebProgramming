@@ -15,7 +15,7 @@ class LoginContainer extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault()
-        axios.post(`http://118.129.146.81:8080/${this.state.ID}`,{
+        axios.post(`http://localhost:8080/${this.state.ID}`,{
             id : this.state.ID,
             pw : this.state.PW
         },{withCreadentials: true}).then((result) => {
