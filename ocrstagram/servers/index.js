@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
 const fs = require('fs')
 const path = require('path')
+const { createWorker } = require('tesseract.js');
+const asyncHandler = require('express-async-handler')
 
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
@@ -14,13 +16,36 @@ app.use(cookieParser())
 app.use(fileUpload())
 app.use(express.static('public'))
 
-app.post('/:id/ocr',(req, res) => {
+// upload img & request ocr
+app.post('/:id/ocr', asyncHandler(async (req, res, next) => {
     let img = req.files.img
-    img.mv(path.resolve(__dirname,'..',`public/img/${req.params.id}`,img.name), async(err) => {
-        console.log('upload img to server')
-    })
-    res.send('upload img to server')
-})
+
+    let imgPath = path.resolve(__dirname,'..',`public/img/${req.params.id}`,img.name);
+    try {
+        if (fs.existsSync(imgPath)) {
+          res.send("Same filename exists")
+        }
+        else {
+            // should handle duplicate file error
+            img.mv(imgPath, async(err) => {
+                console.log('upload img to server')
+            })
+
+            const worker = createWorker();
+            await worker.load();
+            await worker.loadLanguage('eng');
+            await worker.initialize('eng');
+            // ocr img file
+            const { data: { text } } = await worker.recognize(imgPath);
+            console.log(text);
+            // send ocr text
+            res.send('upload img to server\n' + text);
+            await worker.terminate();
+        }
+      } catch(err) {
+        console.error(err)
+    }
+}))
 
 app.post('/:id/post',(req,res) => {
     res.send('post img and text to server')
