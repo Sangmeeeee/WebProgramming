@@ -16,8 +16,8 @@ class UserInfo extends React.Component{
     render(){
         return(
             <div className='UserInfo'>
+                <img className='userProfile'></img>
                 <p>{this.props.id}</p>
-                <p>this is UserInfo</p>
                 <button onClick={this.handlePosting}>+</button>
             </div>
         )

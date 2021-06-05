@@ -1,0 +1,9 @@
+.UserInfo{
+    background-color: aqua;
+    height: 100%;
+    width: 100%;
+}
+
+.UserInfo > button {
+    float: right;
+}
