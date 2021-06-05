@@ -25,12 +25,12 @@ function LoginPage() {
       console.log(result.data)
 
       const expires = new Date()
-            expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14)
-    
-            cookie.save('id',ID,{
-                path:'/',
-                expires,
-            })
+      expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14)
+
+      cookie.save('id',ID,{
+          path:'/',
+          expires,
+      })
 
       window.location.href=`/${ID}`
     }).catch((err) => {
@@ -45,7 +45,7 @@ function LoginPage() {
         <Header as='h2' color='teal' textAlign='center'>
           {/* <Image id="logo" src='./images/ocrstagram.png' /> */}
         </Header>
-        <Form size='large' method="POST" onSubmit={onSubmitHandler}>
+        <Form size='large'>
           <Segment stacked>
             <Form.Input fluid icon='user' iconPosition='left' placeholder='ID' required='true' value={ID} onChange={onIDHandler} />
             <Form.Input
@@ -59,13 +59,13 @@ function LoginPage() {
               onChange={onPasswordHandler}
             />
             <div>
-              <Button type='submit' animated='fade' color='black' fluid="large">
+              <Button  onClick={onSubmitHandler}  type='submit' animated='fade' color='black' fluid="large">
                 <Button.Content visible>Login</Button.Content>
                 <Button.Content hidden><Icon name='arrow right' /></Button.Content>
               </Button>
             </div>
             <div id="sign-up">
-              <Link to="./a/register">
+              <Link to="./user/signup">
                 <Button animated='fade' color='black' fluid size='large'>
                   <Button.Content visible>New to us?</Button.Content>
                   <Button.Content hidden>Sign Up!</Button.Content>
