@@ -10,7 +10,12 @@ const imgOcrController = require('./controllers/imgOcr');
 const storeUserController = require('./controllers/storeUser');
 const storePostController = require('./controllers/storePost')
 const mongoose = require('mongoose')
-// mongoose.connect('mongodb+srv://User:{password}@Cluster0.s1ici.mongodb.net/{dbname}?retryWrites=true&w=majority',{useNewUrlParser: true})
+
+mongoose.connect('mongodb+srv://twknds:!!0906wkd@cluster0.udzlq.mongodb.net/test', {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true    
+});
 
 app.use(cors())
 app.use(express.urlencoded({extended:true}))
