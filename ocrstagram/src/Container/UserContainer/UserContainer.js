@@ -16,24 +16,20 @@ class UserContainer extends React.Component{
         if(this.props.match.params.id === this.state.id)
             return(
                 <div className="UserContainer">
-                    {/* <UserInfo props={this.props} id={this.state.id}></UserInfo> */}
-                        <Container textAlign='right'>
-                            <Button color='black' onClick={() => document.getElementsByClassName('Posting')[0].style.visibility='visible'}  animated='fade'>
-                                <Button.Content visible>+</Button.Content>
-                                <Button.Content hidden> Posting </Button.Content>
-                            </Button>
-                        </Container>
-                        <Container textAlign='left'>
-                            <Header as='h2'>
-                                <Image circular src='/images/avatar/large/patrick.png' /> {this.props.match.params.id}
-                            </Header>
-                        </Container>
-                        {/* <Container textAlign='center'>Center Aligned</Container> */}
-                        {/* <Container textAlign='justified'> */}
-                        {/* <b>Justified</b>
-                        <Divider /> */}
-                        {/* </Container> */}
-                        <Divider />
+                    <Container textAlign='right'>
+                        <Button color='black' onClick={
+                            () => document.getElementsByClassName('Posting')[0].style.visibility='visible'
+                            }  animated='fade'>
+                            <Button.Content visible>+</Button.Content>
+                            <Button.Content hidden> Posting </Button.Content>
+                        </Button>
+                    </Container>
+                    <Container textAlign='left'>
+                        <Header as='h2'>
+                            <Image circular src='/images/avatar/large/patrick.png' /> {this.props.match.params.id}
+                        </Header>
+                    </Container>
+                    <Divider />
 
                     <p>Posted img area</p>
 
@@ -43,24 +39,26 @@ class UserContainer extends React.Component{
         else
             return(
                 <div className="UserContainer">
-                    {/* <UserInfo props={this.props} id={this.state.id}></UserInfo> */}
-                        <Container textAlign='right'>
-                            <Button color='black' disabled='true' onClick={() => document.getElementsByClassName('Posting')[0].style.visibility= 'visible'}  animated='fade'>
-                                <Button.Content visible>+</Button.Content>
-                                <Button.Content hidden> Posting </Button.Content>
-                            </Button>
-                        </Container>
-                        <Container textAlign='left'>
-                            <Header as='h2'>
-                                <Image circular src='/images/avatar/large/patrick.png' /> {this.props.match.params.id}
-                            </Header>
-                        </Container>
-                        {/* <Container textAlign='center'>Center Aligned</Container> */}
-                        {/* <Container textAlign='justified'> */}
-                        {/* <b>Justified</b>
-                        <Divider /> */}
-                        {/* </Container> */}
-                        <Divider />
+                    <Container textAlign='right'>
+                        <Button color='black' disabled='true' onClick={() => {
+                            document.getElementsByClassName('Posting')[0].style.visibility= 'visible'
+                            document.getElementsByClassName('description')[0].innerHTML = '' 
+                            document.getElementsByClassName('uploadImg')[0].src = ''
+                            document.getElementsByClassName('uploadImg')[0].style.width = '0%'
+                            document.getElementsByClassName('uploadImg')[0].style.height = '0%'
+                    }}  animated='fade'>
+                            <Button.Content visible>+</Button.Content>
+                            <Button.Content hidden> Posting </Button.Content>
+                        </Button>
+                    </Container>
+
+                    <Container textAlign='left'>
+                        <Header as='h2'>
+                            <Image circular src='/images/avatar/large/patrick.png' /> {this.props.match.params.id}
+                        </Header>
+                    </Container>
+                    
+                    <Divider />
 
                     <p>Posted img area</p>
 
