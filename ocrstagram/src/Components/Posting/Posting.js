@@ -83,7 +83,7 @@ class Posting extends React.Component{
                     <div style={{position:'absolute',left:'50%',top:'50%',transform:'translate(-50%,-50%)',height:'70%', width:'30%'}}  className="ui card">
                         <div style={{height:'50%', width:'100%'}} className="image">
                             <div style={style} onClick={this.handleOcr}>
-                                <img className='uploadImg' src="/images/avatar/large/matthew.png"/>
+                                <img className='uploadImg'/>
                             </div>
                         </div>
 
