@@ -18,7 +18,7 @@ class UserContainer extends React.Component{
                 <div className="UserContainer">
                     {/* <UserInfo props={this.props} id={this.state.id}></UserInfo> */}
                         <Container textAlign='right'>
-                            <Button color='black' onClick={() => document.getElementsByClassName('Posting')[0].style.visibility= 'visible'}  animated='fade'>
+                            <Button color='black' onClick={() => document.getElementsByClassName('Posting')[0].style.visibility='visible'}  animated='fade'>
                                 <Button.Content visible>+</Button.Content>
                                 <Button.Content hidden> Posting </Button.Content>
                             </Button>

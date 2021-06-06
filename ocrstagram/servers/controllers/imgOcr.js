@@ -5,13 +5,14 @@ const fs = require('fs')
 
 module.exports = asyncHandler(async (req, res, next) => {
     let img = req.files.img
-
-    let imgPath = path.resolve(__dirname,'..','..',`public/img/${req.params.id}`,img.name);
+    let temp = new Date().getTime().toString()
+    // let imgPath = path.resolve(__dirname,'..','..',`public/img/${req.params.id}`,img.name);
+    let imgPath = path.resolve(__dirname,'..','..',`public/img/${req.params.id}`,temp) // add getTime
     try {
-        if (fs.existsSync(imgPath)) {
-          res.send("Same filename exists")
-        }
-        else {
+        // if (fs.existsSync(imgPath)) {
+        //   res.send("Same filename exists")
+        // }
+        // else {
             img.mv(imgPath, async(err) => {
                 console.log('upload img to server')
             })
@@ -26,7 +27,8 @@ module.exports = asyncHandler(async (req, res, next) => {
             // send ocr text
             res.send('upload img to server\n' + text);
             await worker.terminate();
-        }
+            fs.unlinkSync(imgPath)
+        // }
       } catch(err) {
         console.error(err)
     }
