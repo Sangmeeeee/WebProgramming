@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
 const fs = require('fs')
 const path = require('path')
+// const imgOcrController = require('./controllers/imgOcr');
 const imgOcrController = require('./controllers/imgOcr');
 const storeUserController = require('./controllers/storeUser');
 const storePostController = require('./controllers/storePost')
