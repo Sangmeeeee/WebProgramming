@@ -2,7 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import cookie from 'react-cookies'
 import './Posting.css'
-import { Card, Button,Icon, Image, Container } from 'semantic-ui-react'
+import { Loader,Card, Button,Icon, Image, Container,Dimmer,Segment } from 'semantic-ui-react'
 
 const url = ''
 
@@ -25,6 +25,7 @@ class Posting extends React.Component{
     handleOcr = (e) => {
         let fd = new FormData()
         fd.append('img',this.state.img)
+        document.getElementsByClassName('ocrLoading')[0].style.display = 'block'
         axios.post(`http://localhost:8080/${this.state.id}/ocr`,fd,{
             headers:{
                 'Content-Type': 'multipart/form-data'
@@ -32,7 +33,7 @@ class Posting extends React.Component{
         },{withCreadentials: true}
         )
         .then((result) => {
-            // document.getElementsByClassName('result')[0].value = result.data
+            document.getElementsByClassName('ocrLoading')[0].style.display = 'none'
             document.getElementsByClassName('description')[0].appendChild(document.createTextNode(result.data))
         })
         .catch((err) => {
@@ -79,7 +80,7 @@ class Posting extends React.Component{
     render(){
         return(
             <div className='Posting'>
-                <Container  style={{height:'100%'}} textAlign='center'>
+                <Container style={{height:'100%'}} textAlign='center'>
                     <div style={{position:'absolute',left:'50%',top:'50%',transform:'translate(-50%,-50%)',height:'70%', width:'30%'}}  className="ui card">
                         <div style={{height:'50%', width:'100%'}} className="image">
                             <div style={style} onClick={this.handleOcr}>
@@ -89,16 +90,24 @@ class Posting extends React.Component{
 
                         <div style={{height:'30%'}}className="content">
                             <div style={{overflowY: 'auto',height:'100%'}}className="description">
-                                
+                                <Loader className='ocrLoading' active inline='centered' style={{display:'none'}}/>
                             </div>
                         </div>
+
                         <div class="extra content">
                             <Button.Group color='black'>
                                 <Button onClick={() => document.getElementById('img').click()} >사진선택</Button>
                                 <Button onClick={this.handleUpload}>업로드</Button>
-                                <Button onClick={() => document.getElementsByClassName('Posting')[0].style.visibility = 'hidden'}>X</Button>
+                                <Button onClick={() => {
+                                    // document.getElementsByClassName('description')[0].innerHTML = '' 
+                                    document.getElementsByClassName('uploadImg')[0].src = ''
+                                    document.getElementsByClassName('uploadImg')[0].style.width = '0%'
+                                    document.getElementsByClassName('uploadImg')[0].style.height = '0%'
+                                    document.getElementsByClassName('Posting')[0].style.visibility = 'hidden'
+                            }}>X</Button>
                             </Button.Group>
                         </div>
+
                     </div>
                 </Container>
                 <input name='img' id='img' type='file' onChange={this.handleFile.bind(this)}></input>

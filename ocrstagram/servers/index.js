@@ -6,10 +6,12 @@ const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
 const fs = require('fs')
 const path = require('path')
+// const imgOcrController = require('./controllers/imgOcr');
 const imgOcrController = require('./controllers/imgOcr');
 const storeUserController = require('./controllers/storeUser');
 const storePostController = require('./controllers/storePost')
 const loginUserController = require('./controllers/loginUser')
+const searchUserContrller = require('./controllers/userSearch')
 const mongoose = require('mongoose')
 
 mongoose.connect('mongodb+srv://twknds:!!0906wkd@cluster0.udzlq.mongodb.net/test', {
@@ -47,6 +49,8 @@ app.post('/:id/ocr', imgOcrController);
 app.post('/:id/post', storePostController)
 
 app.post('/:id', loginUserController)
+
+app.post('/user/search',searchUserContrller)
 
 // app.post('/user/register', storeUserController);
 
