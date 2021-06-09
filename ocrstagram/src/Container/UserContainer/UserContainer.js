@@ -15,6 +15,7 @@ class UserContainer extends React.Component{
     render(){
         if(this.props.match.params.id === this.state.id)
             return(
+                // 나중에 UserInfo로 따로 나누기
                 <div className="UserContainer">
                     <Container textAlign='right'>
                         <Button color='black' onClick={
