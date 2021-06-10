@@ -45,6 +45,18 @@
     }
 }
 
+@media screen and (max-width:1000px){
+    .mainImg {display: none;}
+    .linear {display: none;}
+    .textMain{
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,50%);
+    }
+
+}
+
 .textMain{
     top:0;
     right:0;
@@ -63,29 +75,30 @@
     animation-duration: 1s;
     animation-delay: 500ms;
     animation-iteration-count: 1;
+    top:30%;
 }
 
 @keyframes fadeup {
     from{
         visibility: visible;
-        top:40px;
+        top:34%;
         opacity: 0;
     }
     25%{
-        top:30px;
+        top:33%;
         opacity: 0.25;
     }
     50%{
-        top:20px;
+        top:32%;
         opacity: 0.5;
     }
     75%{
-        top:10px;
+        top:31%;
         opacity: 0.75;
     }
     to{
         visibility: visible;
-        top:0px;
+        top:30%;
         opacity: 1;
     }   
 }
