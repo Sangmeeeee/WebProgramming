@@ -21,7 +21,7 @@ class UserInfo extends React.Component{
                 </Container>
                 <Container textAlign='left'>
                     <Header as='h2'>
-                        <Image circular src='/images/avatar/large/patrick.png' /> asdf
+                        <Image circular src='/images/avatar/large/patrick.png' /> {this.state.id}
                     </Header>
                 </Container>
                 <Divider />

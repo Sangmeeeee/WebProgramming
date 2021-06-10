@@ -4,7 +4,7 @@ import cookie from 'react-cookies'
 import './Posting.css'
 import { Loader,Card, Button,Icon, Image, Container,Dimmer,Segment } from 'semantic-ui-react'
 
-const url = ''
+const url = 'https://openapi.naver.com/v1/papago/n2mt'
 
 let style = {
     width:'100%',
@@ -15,7 +15,6 @@ let style = {
 class Posting extends React.Component{
     constructor(props){
         super(props)
-        console.log(this.props.props.match.params.id)
         this.state = {
             id : props.id,
             img : null,
@@ -78,6 +77,33 @@ class Posting extends React.Component{
         fileReader.readAsDataURL(file)
     }
 
+    handleTest = (e) => {
+        e.preventDefault()
+
+        // let options = {
+        //     form: {
+        //         source: 'ko',
+        //         target: 'en',
+        //         text: 'hi',
+        //     },
+        //     headers: {
+        //         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        //         'x-naver-client-id': 'QFJbQLuu6_I38EZAENeP',
+        //         'x-naver-client-secret': 'IX0sR4uttL'
+        //     }
+        // }
+        axios.post('http://localhost:8080/test/test',{
+            text : document.getElementsByClassName('ocrResult')[0].innerHTML
+        })
+        .then((result) => {
+            // console.log(result)
+            document.getElementsByClassName('ocrResult')[0].innerHTML = result.data
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+    }
+
     render(){
         return(
             <div className='Posting'>
@@ -108,6 +134,7 @@ class Posting extends React.Component{
                                     document.getElementsByClassName('Posting')[0].style.visibility = 'hidden'
                                     document.getElementsByClassName('ocrResult')[0].innerHTML = ''
                             }}>X</Button>
+                                <Button onClick={this.handleTest.bind(this)}>번역</Button>
                             </Button.Group>
                         </div>
 

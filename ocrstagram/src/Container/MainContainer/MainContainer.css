@@ -55,10 +55,12 @@
 
 .textImg{
     /* display: block; */
+    width: 50%;
     position: relative;
     animation-name: fadeup;
+    visibility: hidden;
     animation-timing-function: linear;
-    animation-duration: 2s;
+    animation-duration: 1s;
     animation-delay: 500ms;
     animation-iteration-count: 1;
 }
@@ -66,19 +68,19 @@
 @keyframes fadeup {
     from{
         visibility: visible;
-        top:100px;
+        top:40px;
         opacity: 0;
     }
     25%{
-        top:75px;
+        top:30px;
         opacity: 0.25;
     }
     50%{
-        top:50px;
+        top:20px;
         opacity: 0.5;
     }
     75%{
-        top:25px;
+        top:10px;
         opacity: 0.75;
     }
     to{
