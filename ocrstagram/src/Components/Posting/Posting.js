@@ -4,8 +4,6 @@ import cookie from 'react-cookies'
 import './Posting.css'
 import { Loader,Card, Button,Icon, Image, Container,Dimmer,Segment } from 'semantic-ui-react'
 
-const url = 'https://openapi.naver.com/v1/papago/n2mt'
-
 let style = {
     width:'100%',
     height:'100%',
@@ -22,6 +20,7 @@ class Posting extends React.Component{
     }
 
     handleOcr = (e) => {
+        e.preventDefault()
         let fd = new FormData()
         fd.append('img',this.state.img)
         document.getElementsByClassName('ocrLoading')[0].style.display = 'block'
@@ -33,8 +32,8 @@ class Posting extends React.Component{
         )
         .then((result) => {
             document.getElementsByClassName('ocrLoading')[0].style.display = 'none'
-            // document.getElementsByClassName('description')[0].appendChild(document.createTextNode(result.data))
             document.getElementsByClassName('ocrResult')[0].innerHTML = result.data
+            console.log(result.data)
         })
         .catch((err) => {
             console.error(err)
@@ -42,12 +41,11 @@ class Posting extends React.Component{
     }
 
     handleUpload = (e) => {
+        e.preventDefault()
         let fd = new FormData()
 
         fd.append('img',this.state.img)
-
-        console.log(document.getElementsByClassName('description')[0].innerHTML)
-        fd.append('text',document.getElementsByClassName('description')[0].innerHTML)
+        fd.append('text',document.getElementsByClassName('ocrResult')[0].innerHTML)
 
         axios.post(`http://localhost:8080/${this.state.id}/post`,fd,{
             headers:{
@@ -79,24 +77,10 @@ class Posting extends React.Component{
 
     handleTest = (e) => {
         e.preventDefault()
-
-        // let options = {
-        //     form: {
-        //         source: 'ko',
-        //         target: 'en',
-        //         text: 'hi',
-        //     },
-        //     headers: {
-        //         'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-        //         'x-naver-client-id': 'QFJbQLuu6_I38EZAENeP',
-        //         'x-naver-client-secret': 'IX0sR4uttL'
-        //     }
-        // }
         axios.post('http://localhost:8080/test/test',{
             text : document.getElementsByClassName('ocrResult')[0].innerHTML
         })
         .then((result) => {
-            // console.log(result)
             document.getElementsByClassName('ocrResult')[0].innerHTML = result.data
         })
         .catch((err) => {
@@ -127,14 +111,13 @@ class Posting extends React.Component{
                                 <Button onClick={() => document.getElementById('img').click()} >사진선택</Button>
                                 <Button onClick={this.handleUpload}>업로드</Button>
                                 <Button onClick={() => {
-                                    // document.getElementsByClassName('description')[0].innerHTML = '' 
                                     document.getElementsByClassName('uploadImg')[0].src = ''
                                     document.getElementsByClassName('uploadImg')[0].style.width = '0%'
                                     document.getElementsByClassName('uploadImg')[0].style.height = '0%'
                                     document.getElementsByClassName('Posting')[0].style.visibility = 'hidden'
                                     document.getElementsByClassName('ocrResult')[0].innerHTML = ''
-                            }}>X</Button>
-                                <Button onClick={this.handleTest.bind(this)}>번역</Button>
+                                }}>X</Button>
+                                <Button onClick={this.handleTest}>번역</Button>
                             </Button.Group>
                         </div>
 
