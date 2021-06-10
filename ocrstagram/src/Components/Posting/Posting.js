@@ -34,7 +34,8 @@ class Posting extends React.Component{
         )
         .then((result) => {
             document.getElementsByClassName('ocrLoading')[0].style.display = 'none'
-            document.getElementsByClassName('description')[0].appendChild(document.createTextNode(result.data))
+            // document.getElementsByClassName('description')[0].appendChild(document.createTextNode(result.data))
+            document.getElementsByClassName('ocrResult')[0].innerHTML = result.data
         })
         .catch((err) => {
             console.error(err)
@@ -90,6 +91,7 @@ class Posting extends React.Component{
 
                         <div style={{height:'30%'}}className="content">
                             <div style={{overflowY: 'auto',height:'100%'}}className="description">
+                                <strong className='ocrResult'></strong>
                                 <Loader className='ocrLoading' active inline='centered' style={{display:'none'}}/>
                             </div>
                         </div>
@@ -104,6 +106,7 @@ class Posting extends React.Component{
                                     document.getElementsByClassName('uploadImg')[0].style.width = '0%'
                                     document.getElementsByClassName('uploadImg')[0].style.height = '0%'
                                     document.getElementsByClassName('Posting')[0].style.visibility = 'hidden'
+                                    document.getElementsByClassName('ocrResult')[0].innerHTML = ''
                             }}>X</Button>
                             </Button.Group>
                         </div>

@@ -20,7 +20,8 @@ module.exports = asyncHandler(async (req, res, next) => {
             const { data: { text } } = await worker.recognize(imgPath);
             console.log(text);
             // send ocr text
-            res.send('upload img to server\n' + text);
+            // res.send('upload img to server\n' + text);
+            res.send(text)
             await worker.terminate();
             fs.unlinkSync(imgPath)
       } catch(err) {
