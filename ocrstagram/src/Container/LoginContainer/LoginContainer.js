@@ -65,7 +65,7 @@ function LoginPage() {
               </Button>
             </div>
             <div id="sign-up">
-              <Link to="./user/signup">
+              <Link to="/user/signup">
                 <Button animated='fade' color='black' fluid size='large'>
                   <Button.Content visible>New to us?</Button.Content>
                   <Button.Content hidden>Sign Up!</Button.Content>

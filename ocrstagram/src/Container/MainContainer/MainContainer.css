@@ -1,0 +1,15 @@
+.MainContainer{
+    top:0;
+    left:0;
+    position: absolute;
+    height:100vh;
+    width:100vw;
+    z-index: 100;
+    background-color: white;
+}
+
+.MainContainer img{
+    height: 100%;
+    width: 50%;
+    float: left;
+}

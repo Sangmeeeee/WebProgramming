@@ -34,7 +34,7 @@ class Header extends React.Component {
       <div className="Header">
         <span>  
           <a href="/">
-            <img src="/images/ocrstagram.png" height="100%"></img>
+            <img src="/images/ocrstagram.png" height="100%" style={{'maxHeight':'6vh'}}></img>
           </a>
         </span>
         <Container textAlign='center'>

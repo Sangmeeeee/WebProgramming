@@ -1,9 +1,12 @@
 .Header{
     margin-top: 2vh;
     text-align: left;
-    height: 6vh;
+    /* height: 6vh; */
+    height:fit-content;
     margin-bottom: 2vh;
     width: 100%;
+    /* position:static; */
+    /* position:absolute; */
 }
 .Header span{
     margin-left: 2vw;
