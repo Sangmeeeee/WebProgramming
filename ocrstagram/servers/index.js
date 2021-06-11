@@ -57,7 +57,7 @@ app.post('/papago/translate',translateTextController)
 
 app.post('/user/isok',isOkController)
 
-// app.post('/user/register', storeUserController);
+app.post('/user/register', storeUserController);
 
 app.listen(8080, () => {
     console.log('8080 port is open')
