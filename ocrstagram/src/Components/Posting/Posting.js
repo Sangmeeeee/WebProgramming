@@ -77,7 +77,7 @@ class Posting extends React.Component{
 
     handleTest = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/test/test',{
+        axios.post('http://localhost:8080/papago/translate',{
             text : document.getElementsByClassName('ocrResult')[0].innerHTML
         })
         .then((result) => {

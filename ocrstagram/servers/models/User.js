@@ -6,7 +6,6 @@ const UserSchema = new Schema({
     userid: { // pass in config object. and put in validation rules 
       type: String,
       required: true,
-      unique: true 
     },
     pw: {
       type: String,
