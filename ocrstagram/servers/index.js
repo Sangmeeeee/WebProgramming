@@ -25,7 +25,6 @@ app.use(express.json())
 app.use(cookieParser())
 app.use(fileUpload())
 
-
 app.use(express.static('../public'))
 
 /* 실제 배포를 위해선
@@ -71,10 +70,18 @@ app.post('/test/test',(req, res) =>{
    });
 })
 
-app.post('/user/isok',(req,res) => {
-    // console.log(req)
-    res.send('hi')
-})
+const User = require('./models/User')
+const asyncHandler = require('express-async-handler');
+
+app.post('/user/isok',asyncHandler(async (req, res, next) => {
+    let result = await User.find(
+        { userid: req.body.userid}
+    )
+    if (result.length == 0)
+        res.send(false)
+    else
+        res.send(true)
+}))
 
 // app.post('/user/register', storeUserController);
 
