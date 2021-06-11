@@ -41,6 +41,7 @@ class Header extends React.Component {
       </span>
     );
     return (
+
       <div className="Header">
         <span>  
           <a href="/">
