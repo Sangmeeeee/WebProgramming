@@ -11,6 +11,7 @@ const storeUserController = require('./controllers/storeUser');
 const storePostController = require('./controllers/storePost')
 const loginUserController = require('./controllers/loginUser')
 const searchUserContrller = require('./controllers/userSearch')
+const getDBContrller = require('./controllers/getDB')
 const translateTextController = require('./controllers/translateText')
 const isOkController = require('./controllers/isOk')
 const mongoose = require('mongoose')
@@ -36,7 +37,6 @@ app.use(express.static('../public'))
 를 주석처리해주고 아래 부분의 주석을 해제해준다.
 */
 
-
 // app.use(express.static('../build'))
 
 // app.get('*', (req, res, next) => {
@@ -49,6 +49,8 @@ app.post('/:id/ocr', imgOcrController);
 
 app.post('/:id/post', storePostController)
 
+app.post('/:id/getDB', getDBContrller)
+
 app.post('/:id', loginUserController)
 
 app.post('/user/search',searchUserContrller)
@@ -57,7 +59,7 @@ app.post('/papago/translate',translateTextController)
 
 app.post('/user/isok',isOkController)
 
-// app.post('/user/register', )
+app.post('/user/register', storeUserController);
 
 app.listen(8080, () => {
     console.log('8080 port is open')
