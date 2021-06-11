@@ -12,7 +12,7 @@ class UserContainer extends React.Component{
         this.state={
             id : cookie.load('id'),
             isok : true,
-            db : null
+            db : []
         }
     }
 
@@ -24,19 +24,6 @@ class UserContainer extends React.Component{
             this.setState({
                 isok : result.data
             })
-            if(this.state.isok){
-                axios.post(`http://localhost:8080/${this.state.id}/getDB`,
-                {userid : this.props.match.params.id})
-                .then((result) => {
-                    console.log(result.data)
-                    this.setState({
-                        db : result.data
-                    })
-                })
-                .catch((err) => {
-                    console.error(err)
-                })
-            }
         })
         .catch((err) => {
             console.error(err)
@@ -50,16 +37,20 @@ class UserContainer extends React.Component{
                 <div className="UserContainer">
                     <UserInfo props={this.props} id={this.state.id}/>
                     
-                   <PostedImg props={this.props} db={this.state.db}/>
+                   <PostedImg props={this.props}/>
 
                     <Posting props={this.props} id={this.state.id}/>
                 </div>
             )
-        else
+        else if(this.state.isok === false) 
             return(
                 <div>404 not found</div>
             )
-        }
+        else
+            return(
+                <div></div>
+            )
+    }
 }
 
 export default UserContainer

@@ -54,6 +54,8 @@ class Posting extends React.Component{
         })
         .then((result) => {
             console.log(result)
+            // console.log(this.props.props.match.params.id)
+            window.location.href=`/${this.props.props.match.params.id}`
         })
         .catch((err) => {
             console.error(err)

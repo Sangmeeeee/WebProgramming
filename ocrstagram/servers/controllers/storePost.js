@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => { // id랑 파일이 같이옴
     let id = req.params.id
 
     let temp = new Date().getTime().toString()
-    let imgPath = path.resolve(__dirname,'..','..',`public/img/${req.params.id}`,temp+'.jpg')
+    let imgPath = path.resolve(__dirname,'..','..',`public/img/${req.params.id}`,temp)
 
     console.log(imgPath)
     img.mv(imgPath, async(err) => {

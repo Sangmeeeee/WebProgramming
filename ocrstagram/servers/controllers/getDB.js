@@ -9,6 +9,6 @@ module.exports = asyncHandler(async (req, res, next) => {
 
     const resultId = await User.findOne({userid:req.body.userid})
     const posts = await Post.find({'username':{_id:resultId._id}})
-    console.log(posts)
+    // console.log(posts)
     res.send(posts)
 })
