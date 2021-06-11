@@ -4,6 +4,7 @@ import cookie from 'react-cookies'
 import axios from 'axios'
 import { Posting, UserInfo,  } from '../../Components'
 import { Button, Header, Image,Container, Divider, SearchResults } from 'semantic-ui-react'
+import {GridList, GridListTile} from '@material-ui/core'
 
 class UserContainer extends React.Component{
     constructor(props){
@@ -19,7 +20,14 @@ class UserContainer extends React.Component{
             userid : this.props.match.params.id
         })
         .then((result) => {
-            console.log(result)
+            // 사용자가 존재하는 사람인지 아닌지 판단
+            this.setState({
+                isok : result.data
+            })
+            if(this.state.isok){
+
+
+            }
         })
         .catch((err) => {
             console.error(err)
@@ -27,14 +35,22 @@ class UserContainer extends React.Component{
     }
 
     render(){
+        if(this.state.isok)
             return(
                 // 나중에 UserInfo로 따로 나누기
                 <div className="UserContainer">
                     <UserInfo props={this.props} id={this.state.id}/>
-                    <p>Posted img area</p>
+                    
+                   <p>posted area</p>
+
                     <Posting props={this.props} id={this.state.id}/>
                 </div>
-            )}
+            )
+        else
+            return(
+                <div>404 not found</div>
+            )
+        }
 }
 
 export default UserContainer
