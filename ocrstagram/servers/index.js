@@ -51,7 +51,6 @@ app.post('/:id', loginUserController)
 
 app.post('/user/search',searchUserContrller)
 
-
 app.post('/test/test',(req, res) =>{
     var api_url = 'https://openapi.naver.com/v1/papago/n2mt';
    var request = require('request');
@@ -70,6 +69,11 @@ app.post('/test/test',(req, res) =>{
         console.error(error)
      }
    });
+})
+
+app.post('/user/isok',(req,res) => {
+    // console.log(req)
+    res.send('hi')
 })
 
 // app.post('/user/register', storeUserController);

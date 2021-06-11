@@ -1,5 +1,5 @@
 import React from 'react'
-import { Search,Input,Icon,Container } from 'semantic-ui-react'
+import { Search,Input,Icon,Container, Grid, Segment  } from 'semantic-ui-react'
 import './Header.css'
 import axios from 'axios'
 
@@ -15,8 +15,18 @@ class Header extends React.Component {
     .then((result) => {
       // console.log(result.data)
 
-      results = result.data
-      console.log(results)
+      // console.log(result.data)
+      // results = new Array()
+      var aaaaaa
+      aaaaaa = result.data.map((obj) => {
+        let results = []
+        console.log(obj)
+        for(let i = 0; i<result.data.length; i++){
+          results[i] = obj.userid
+        }
+        return results
+      })
+      // console.log(aaaaaa)
     })
     .catch((err) => {
       console.error(err)
@@ -38,16 +48,14 @@ class Header extends React.Component {
           </a>
         </span>
         <Container textAlign='center'>
-          {/* <Input onChange={this.handleSearch.bind(this)} icon='search' placeholder='Search...'/> */}
-
-          <Search
-            fluid
-            icon="search"
-            placeholder="Search..."
-            results={results}
-            resultRenderer={resRender}
-            onSearchChange={this.handleSearch.bind(this)}
-          />
+            <Search
+              fluid
+              icon="search"
+              placeholder="Search..."
+              results={results}
+              resultRenderer={resRender}
+              onSearchChange={this.handleSearch.bind(this)}
+            />
         </Container>
       </div>
     )

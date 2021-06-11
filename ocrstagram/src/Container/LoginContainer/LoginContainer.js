@@ -40,7 +40,7 @@ function LoginPage() {
   }
 
   return (
-    <Grid id="loginGrid" textAlign='center' style={{ height: '100vh'}} >
+    <Grid id="loginGrid" textAlign='center' style={{ height: '80%'}} >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='teal' textAlign='center'>
           {/* <Image id="logo" src='./images/ocrstagram.png' /> */}

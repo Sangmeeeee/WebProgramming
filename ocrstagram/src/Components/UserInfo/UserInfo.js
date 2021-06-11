@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Header, Image,Container, Divider } from 'semantic-ui-react'
+import axios from 'axios'
 
 class UserInfo extends React.Component{
     constructor(props){

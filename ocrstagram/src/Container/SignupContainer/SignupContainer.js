@@ -38,7 +38,7 @@ class SignupContainer extends React.Component {
 
   render() {
     return (
-      <Grid id="signUpGrid" textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+      <Grid id="signUpGrid" textAlign='center' style={{ height: '80%' }} verticalAlign='middle'>
         <Grid.Column style={{ maxWidth: 450 }}>
           <Header as='h2' color='teal' textAlign='center'>
             {/* <Image id="logo" src='./images/ocrstagram.png' /> */}
