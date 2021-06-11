@@ -10,12 +10,13 @@ module.exports = async (req, res, next) => { // id랑 파일이 같이옴
     let temp = new Date().getTime().toString()
     let imgPath = path.resolve(__dirname,'..','..',`public/img/${req.params.id}`,temp+'.jpg')
 
+    console.log(imgPath)
     img.mv(imgPath, async(err) => {
         User.findOne({userid: id}, (error, user) => {
             let _id = user._id
             Post.create({
                 text:req.body.text,
-                image : '/img/' + temp,
+                image : '/img/' + id + '/' + temp,
                 username : _id
             })
             res.send('ok')
