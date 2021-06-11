@@ -12,6 +12,7 @@ const storePostController = require('./controllers/storePost')
 const loginUserController = require('./controllers/loginUser')
 const searchUserContrller = require('./controllers/userSearch')
 const getDBContrller = require('./controllers/getDB')
+const getImgContrller = require('./controllers/getImg')
 const translateTextController = require('./controllers/translateText')
 const isOkController = require('./controllers/isOk')
 const mongoose = require('mongoose')
@@ -50,6 +51,8 @@ app.post('/:id/ocr', imgOcrController);
 app.post('/:id/post', storePostController)
 
 app.post('/:id/getDB', getDBContrller)
+
+// app.get('/:id/geImg', getImgContrller)
 
 app.post('/:id', loginUserController)
 
