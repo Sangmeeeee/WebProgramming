@@ -16,14 +16,26 @@ class UserContainer extends React.Component{
 
     componentDidMount = () => {
         axios.post('http://localhost:8080/user/isok',{ // 사용자가 있나 없나 찾아봄
-            userid : this.props.match.params.id
+        userid : this.props.match.params.id
+    })
+    .then((result) => {
+        this.setState({
+            isok : result.data
         })
-        .then((result) => {
-            console.log(result)
-        })
-        .catch((err) => {
-            console.error(err)
-        })
+        if(this.state.isok){
+            axios.post(`http://localhost:8080/${this.state.id}/getDB`,
+            {userid : this.props.match.params.id})
+            .then((result) => {
+                console.log(result.data)
+            })
+            .catch((err) => {
+                console.error(err)
+            })
+        }
+    })
+    .catch((err) => {
+        console.error(err)
+    })
     }
 
     render(){

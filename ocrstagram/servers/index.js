@@ -11,6 +11,7 @@ const storeUserController = require('./controllers/storeUser');
 const storePostController = require('./controllers/storePost')
 const loginUserController = require('./controllers/loginUser')
 const searchUserContrller = require('./controllers/userSearch')
+const getDBContrller = require('./controllers/getDB')
 const mongoose = require('mongoose')
 
 mongoose.connect('mongodb+srv://twknds:!!0906wkd@cluster0.udzlq.mongodb.net/test', {
@@ -33,7 +34,6 @@ app.use(express.static('../public'))
 를 주석처리해주고 아래 부분의 주석을 해제해준다.
 */
 
-
 // app.use(express.static('../build'))
 
 // app.get('*', (req, res, next) => {
@@ -45,6 +45,8 @@ app.use(express.static('../public'))
 app.post('/:id/ocr', imgOcrController);
 
 app.post('/:id/post', storePostController)
+
+app.post('/:id/getDB', getDBContrller)
 
 app.post('/:id', loginUserController)
 
@@ -59,7 +61,7 @@ app.post('/test/test',(req, res) =>{
        form: {'source':'en', 'target':'ko', 'text':req.body.text},
        headers: {'X-Naver-Client-Id':'QFJbQLuu6_I38EZAENeP', 'X-Naver-Client-Secret': 'IX0sR4uttL'}
     };
-
+    
    request.post(options, function (error, response, body) {
      if (!error && response.statusCode == 200) {
             res.send(JSON.parse(body).message.result.translatedText)
@@ -70,18 +72,19 @@ app.post('/test/test',(req, res) =>{
    });
 })
 
-const User = require('./models/User')
 const asyncHandler = require('express-async-handler');
 
 app.post('/user/isok',asyncHandler(async (req, res, next) => {
-    let result = await User.find(
-        { userid: req.body.userid}
-    )
+    let result = await User.find({ 
+        userid: req.body.userid
+    })
+
     if (result.length == 0)
         res.send(false)
     else
         res.send(true)
 }))
+
 
 // app.post('/user/register', storeUserController);
 
