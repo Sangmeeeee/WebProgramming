@@ -11,7 +11,7 @@ class UserContainer extends React.Component{
         super(props)
         this.state={
             id : cookie.load('id'),
-            isok : null
+            isok : true
         }
     }
 
@@ -20,13 +20,18 @@ class UserContainer extends React.Component{
             userid : this.props.match.params.id
         })
         .then((result) => {
-            // 사용자가 존재하는 사람인지 아닌지 판단
             this.setState({
                 isok : result.data
             })
             if(this.state.isok){
-
-
+                axios.post(`http://localhost:8080/${this.state.id}/getDB`,
+                {userid : this.props.match.params.id})
+                .then((result) => {
+                    console.log(result.data)
+                })
+                .catch((err) => {
+                    console.error(err)
+                })
             }
         })
         .catch((err) => {
