@@ -2,7 +2,7 @@ import React from 'react'
 import './UserContainer'
 import cookie from 'react-cookies'
 import axios from 'axios'
-import { Posting, UserInfo,  } from '../../Components'
+import { Posting, UserInfo, PostedImg } from '../../Components'
 import { Button, Header, Image,Container, Divider, SearchResults } from 'semantic-ui-react'
 import {GridList, GridListTile} from '@material-ui/core'
 
@@ -11,7 +11,8 @@ class UserContainer extends React.Component{
         super(props)
         this.state={
             id : cookie.load('id'),
-            isok : true
+            isok : true,
+            db : null
         }
     }
 
@@ -28,6 +29,9 @@ class UserContainer extends React.Component{
                 {userid : this.props.match.params.id})
                 .then((result) => {
                     console.log(result.data)
+                    this.setState({
+                        db : result.data
+                    })
                 })
                 .catch((err) => {
                     console.error(err)
@@ -46,7 +50,7 @@ class UserContainer extends React.Component{
                 <div className="UserContainer">
                     <UserInfo props={this.props} id={this.state.id}/>
                     
-                   <p>posted area</p>
+                   <PostedImg props={this.props} db={this.state.db}/>
 
                     <Posting props={this.props} id={this.state.id}/>
                 </div>

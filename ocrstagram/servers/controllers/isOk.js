@@ -7,8 +7,6 @@ module.exports = asyncHandler(async (req, res, next) => {
         { userid: req.body.userid}
     )
 
-    console.log(posts)
-
     if (result.length == 0)
         res.send(false)
     else
