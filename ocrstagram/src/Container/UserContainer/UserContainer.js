@@ -16,7 +16,7 @@ class UserContainer extends React.Component{
 
     componentDidMount = () => {
         axios.post('http://localhost:8080/user/isok',{ // 사용자가 있나 없나 찾아봄
-            userid : this.state.id
+            userid : this.props.match.params.id
         })
         .then((result) => {
             console.log(result)
