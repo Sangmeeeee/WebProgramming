@@ -1,0 +1,104 @@
+.MainContainer{
+    top:0;
+    left:0;
+    position: absolute;
+    height:100vh;
+    width:100vw;
+    z-index: 100;
+    background-color: white;
+}
+
+.linear{
+    left: 0;
+    top:0;
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    z-index: 11;
+    background:linear-gradient(to left,rgba(0,0,0,0),rgba(0,0,0));
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+}
+
+.mainImg{
+    left: 0;
+    top:0;
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    z-index: 10;
+    animation-name: fadeIn;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    /* box-shadow: 10px 0px 10px black; */
+}
+
+@keyframes fadeIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width:1000px){
+    .mainImg {display: none;}
+    .linear {display: none;}
+    .textMain{
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,50%);
+    }
+
+}
+
+.textMain{
+    top:0;
+    right:0;
+    height: 100%;
+    width: 50%;
+    position: absolute;
+}
+
+.textImg{
+    /* display: block; */
+    width: 50%;
+    position: relative;
+    animation-name: fadeup;
+    visibility: hidden;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-delay: 500ms;
+    animation-iteration-count: 1;
+    top:30%;
+}
+
+@keyframes fadeup {
+    from{
+        visibility: visible;
+        top:34%;
+        opacity: 0;
+    }
+    25%{
+        top:33%;
+        opacity: 0.25;
+    }
+    50%{
+        top:32%;
+        opacity: 0.5;
+    }
+    75%{
+        top:31%;
+        opacity: 0.75;
+    }
+    to{
+        visibility: visible;
+        top:30%;
+        opacity: 1;
+    }   
+}

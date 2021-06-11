@@ -1,31 +1,51 @@
-// import React from 'react'
-// import {Posting} from '../index'
-// import cookie from 'react-cookies'
-// import './UserInfo.css'
+import React from 'react'
+import { Button, Header, Image,Container, Divider } from 'semantic-ui-react'
+import axios from 'axios'
 
-// class UserInfo extends React.Component{
-//     constructor(props){
-//         super(props)
-//     }
+class UserInfo extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            id : props.id
+        }
+    }
 
-//     handlePosting = (e) => {
-//         e.preventDefault()
-//         // document.getElementsByClassName('description')[0].innerHTML = '' 
-//         document.getElementsByClassName('uploadImg')[0].src = ''
-//         document.getElementsByClassName('uploadImg')[0].style.width = '0%'
-//         document.getElementsByClassName('uploadImg')[0].style.height = '0%'
-//         document.getElementsByClassName('Posting')[0].style.visibility = 'visible'
-//     }
+    render(){
+        if(this.props.props.match.params.id === this.state.id)
+            return(
+            <div className='userInfo'>
+                <Container textAlign='right'>
+                    <Button color='black' onClick={() => document.getElementsByClassName('Posting')[0].style.visibility='visible'} animated='fade'>
+                        <Button.Content visible >+</Button.Content>
+                        <Button.Content hidden > Posting </Button.Content>
+                    </Button>
+                </Container>
+                <Container textAlign='left'>
+                    <Header as='h2'>
+                        <Image circular src='/images/Info.png' /> {this.state.id}
+                    </Header>
+                </Container>
+                <Divider />
+            </div>
+            )
+        else
+            return(
+                <div className='userInfo'>
+                    <Container textAlign='right'>
+                        <Button disabled='true' color='black' onClick={() => document.getElementsByClassName('Posting')[0].style.visibility='visible'} animated='fade'>
+                            <Button.Content visible >+</Button.Content>
+                            <Button.Content hidden > Posting </Button.Content>
+                        </Button>
+                    </Container>
+                    <Container textAlign='left'>
+                        <Header as='h2'>
+                            <Image circular src='/images/Info.png' /> {this.props.props.match.params.id}
+                        </Header>
+                    </Container>
+                    <Divider />
+                </div>
+            )        
+    }
+}
 
-//     render(){
-//         return(
-//             <div className='UserInfo'>
-//                 <img className='userProfile'></img>
-//                 <p>{this.props.id}</p>
-//                 <button onClick={this.handlePosting}>+</button>
-//             </div>
-//         )
-//     }
-// }
-
-// export default UserInfo
+export default UserInfo

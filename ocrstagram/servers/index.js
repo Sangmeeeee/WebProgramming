@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser')
 const fileUpload = require('express-fileupload')
 const fs = require('fs')
 const path = require('path')
-// const imgOcrController = require('./controllers/imgOcr');
 const imgOcrController = require('./controllers/imgOcr');
 const storeUserController = require('./controllers/storeUser');
 const storePostController = require('./controllers/storePost')
@@ -51,6 +50,31 @@ app.post('/:id/post', storePostController)
 app.post('/:id', loginUserController)
 
 app.post('/user/search',searchUserContrller)
+
+app.post('/test/test',(req, res) =>{
+    var api_url = 'https://openapi.naver.com/v1/papago/n2mt';
+   var request = require('request');
+
+   var options = {
+       url: api_url,
+       form: {'source':'en', 'target':'ko', 'text':req.body.text},
+       headers: {'X-Naver-Client-Id':'QFJbQLuu6_I38EZAENeP', 'X-Naver-Client-Secret': 'IX0sR4uttL'}
+    };
+
+   request.post(options, function (error, response, body) {
+     if (!error && response.statusCode == 200) {
+            res.send(JSON.parse(body).message.result.translatedText)
+
+     } else {
+        console.error(error)
+     }
+   });
+})
+
+app.post('/user/isok',(req,res) => {
+    // console.log(req)
+    res.send('hi')
+})
 
 // app.post('/user/register', storeUserController);
 

@@ -40,7 +40,7 @@ function LoginPage() {
   }
 
   return (
-    <Grid id="loginGrid" textAlign='center' style={{ height: '100vh'}} >
+    <Grid id="loginGrid" textAlign='center' style={{ height: '80%'}} >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as='h2' color='teal' textAlign='center'>
           {/* <Image id="logo" src='./images/ocrstagram.png' /> */}
@@ -65,7 +65,7 @@ function LoginPage() {
               </Button>
             </div>
             <div id="sign-up">
-              <Link to="./user/signup">
+              <Link to="/user/signup">
                 <Button animated='fade' color='black' fluid size='large'>
                   <Button.Content visible>New to us?</Button.Content>
                   <Button.Content hidden>Sign Up!</Button.Content>
