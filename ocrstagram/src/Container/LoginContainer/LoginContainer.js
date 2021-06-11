@@ -22,17 +22,19 @@ function LoginPage() {
       id: ID,
       pw : Password
     }).then((result) => {
+      if(result.data === true){
       console.log(result.data)
-
       const expires = new Date()
       expires.setDate(Date.now() + 1000 * 60 * 60 * 24 * 14)
-
       cookie.save('id',ID,{
           path:'/',
           expires,
       })
-
-      window.location.href=`/${ID}`
+      console.log(window.location)
+      window.location.href = `/${ID}`
+    }
+    else
+      window.location.href = '/user/login'
     }).catch((err) => {
       console.error(err)
     })
