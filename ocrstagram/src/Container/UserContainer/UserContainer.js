@@ -41,20 +41,6 @@ class UserContainer extends React.Component{
         .catch((err) => {
             console.error(err)
         })
-        if(this.state.isok){
-            axios.post(`http://localhost:8080/${this.state.id}/getDB`,
-            {userid : this.props.match.params.id})
-            .then((result) => {
-                console.log(result.data)
-            })
-            .catch((err) => {
-                console.error(err)
-            })
-        }
-    })
-    .catch((err) => {
-        console.error(err)
-    })
     }
 
     render(){
