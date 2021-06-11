@@ -4,6 +4,7 @@ import cookie from 'react-cookies'
 import axios from 'axios'
 import { Posting, UserInfo,  } from '../../Components'
 import { Button, Header, Image,Container, Divider, SearchResults } from 'semantic-ui-react'
+import PostedImg from './PostedImage'
 
 class UserContainer extends React.Component{
     constructor(props){
@@ -31,7 +32,8 @@ class UserContainer extends React.Component{
                 // 나중에 UserInfo로 따로 나누기
                 <div className="UserContainer">
                     <UserInfo props={this.props} id={this.state.id}/>
-                    <p>Posted img area</p>
+                    {/* <p>Posted img area</p> */}
+                    <PostedImg/>
                     <Posting props={this.props} id={this.state.id}/>
                 </div>
             )}
