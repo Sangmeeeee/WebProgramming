@@ -1,6 +1,7 @@
 import React from 'react'
 import { Grid, Image, Divider } from 'semantic-ui-react'
 import './MainContainer.css'
+import {URL} from '../../config'
 
 class MainContainer extends React.Component{
     componentDidMount = () => {

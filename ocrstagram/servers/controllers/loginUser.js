@@ -27,6 +27,4 @@ module.exports = (req, res, next) => {
             res.send(false)
         }
     })
-    // console.log(`${path.resolve(__dirname,'..','..','public/img')}/${req.body.id}`)
-
 }

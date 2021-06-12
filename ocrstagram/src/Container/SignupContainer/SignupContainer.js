@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { Button, Form, Grid, Header, Image, Message, Segment, Icon } from 'semantic-ui-react'
+import {URL} from '../../config'
 
 class SignupContainer extends React.Component {
   constructor(props){
@@ -25,7 +26,7 @@ class SignupContainer extends React.Component {
 
   onSubmitHandler = (event) => {
     event.preventDefault()
-    axios.post(`http://54.159.40.14:8080/user/register`,{
+    axios.post(`${URL}/user/register`,{
       id : this.state.id,
       pw : this.state.pw
     }).then((result) => {
@@ -35,6 +36,8 @@ class SignupContainer extends React.Component {
       console.error(err)
     })
   }
+
+  
 
   render() {
     return (

@@ -4,6 +4,7 @@ import { Container, Divider, Image } from 'semantic-ui-react';
 import { render } from 'react-dom';
 import axios from 'axios'
 import {Posted} from '../index'
+import {URL} from '../../config'
 
 let dataList = []
 
@@ -30,10 +31,10 @@ class PostedImage extends React.Component {
     }
   }
 
+
+  
   componentDidMount = () => {
-    // console.log(this.props.pr)
-    // axios.post(`http://localhost:8080/${this.state.id}/getDB`,
-    axios.post(`http://54.159.40.14:8080/${this.state.id}/getDB`,
+    axios.post(`${URL}/${this.state.id}/getDB`,
     {userid : this.props.props.match.params.id})
     .then((result) => {
         console.log(result.data)
@@ -80,8 +81,8 @@ class PostedImage extends React.Component {
                 </a> */}
                     <Image
                     style={{ 'width': '100%', 'height': '100%'}} 
-                    src={`http://54.159.40.14:8080/${this.props.props.match.params.id}/getImg?image=${data[0]}`}
-                    onClick={this.renderText.bind(this, `http://54.159.40.14:8080/${this.props.props.match.params.id}/getImg?image=${data[0]}`,data[1])}
+                    src={`${URL}/${this.props.props.match.params.id}/getImg?image=${data[0]}`}
+                    onClick={this.renderText.bind(this, `${URL}/${this.props.props.match.params.id}/getImg?image=${data[0]}`,data[1])}
                     ></Image>
               </GridListTile>
             ))}

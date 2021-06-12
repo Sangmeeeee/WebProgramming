@@ -3,6 +3,7 @@ import React from 'react'
 import cookie from 'react-cookies'
 import './Posting.css'
 import { Loader,Card, Button,Icon, Image, Container,Dimmer,Segment } from 'semantic-ui-react'
+import {URL} from '../../config'
 
 let style = {
     width:'100%',
@@ -24,7 +25,7 @@ class Posting extends React.Component{
         let fd = new FormData()
         fd.append('img',this.state.img)
         document.getElementsByClassName('ocrLoading')[0].style.display = 'block'
-        axios.post(`http://54.159.40.14:8080/${this.state.id}/ocr`,fd,{
+        axios.post(`${URL}/${this.state.id}/ocr`,fd,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
@@ -47,14 +48,13 @@ class Posting extends React.Component{
         fd.append('img',this.state.img)
         fd.append('text',document.getElementsByClassName('ocrResult')[0].innerHTML)
 
-        axios.post(`http://54.159.40.14:8080/${this.state.id}/post`,fd,{
+        axios.post(`${URL}/${this.state.id}/post`,fd,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
         })
         .then((result) => {
             console.log(result)
-            // console.log(this.props.props.match.params.id)
             window.location.href=`/${this.props.props.match.params.id}`
         })
         .catch((err) => {
@@ -79,7 +79,7 @@ class Posting extends React.Component{
 
     handleTest = (e) => {
         e.preventDefault()
-        axios.post('http://54.159.40.14:8080/papago/translate',{
+        axios.post(`${URL}/papago/translate`,{
             text : document.getElementsByClassName('ocrResult')[0].innerHTML
         })
         .then((result) => {

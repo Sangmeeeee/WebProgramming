@@ -5,6 +5,7 @@ import axios from 'axios'
 import { Posting, UserInfo, PostedImg, Posted } from '../../Components'
 import { Button, Header, Image,Container, Divider, SearchResults } from 'semantic-ui-react'
 import {GridList, GridListTile} from '@material-ui/core'
+import {URL} from '../../config'
 
 class UserContainer extends React.Component{
     constructor(props){
@@ -17,7 +18,7 @@ class UserContainer extends React.Component{
     }
 
     componentDidMount = () => {
-        axios.post('http://54.159.40.14:8080/user/isok',{ // 사용자가 있나 없나 찾아봄
+        axios.post(`${URL}/user/isok`,{ // 사용자가 있나 없나 찾아봄
             userid : this.props.match.params.id
         })
         .then((result) => {

@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Header, Image,Container, Divider } from 'semantic-ui-react'
 import axios from 'axios'
 import cookie from 'react-cookies'
+import {URL} from '../../config'
 
 class UserInfo extends React.Component{
     constructor(props){
@@ -34,7 +35,7 @@ class UserInfo extends React.Component{
                 <Container textAlign='left'>
                     <Header as='h2'>
                         {/* <Image circular src='/images/Info.png' /> {this.state.id} */}
-                        <Image circular src='http://54.159.40.14:8080/images/Info.png' /> {this.state.id}
+                        <Image circular src={`${URL}/images/Info.png`} /> {this.state.id}
                     </Header>
                 </Container>
                 <Divider />
@@ -59,7 +60,7 @@ class UserInfo extends React.Component{
                     </Container>
                     <Container textAlign='left'>
                         <Header as='h2'>
-                            <Image circular src='http://54.159.40.14:8080/images/Info.png' /> {this.props.props.match.params.id}
+                            <Image circular src={`${URL}/images/Info.png`}  /> {this.props.props.match.params.id}
                         </Header>
                     </Container>
                     <Divider />

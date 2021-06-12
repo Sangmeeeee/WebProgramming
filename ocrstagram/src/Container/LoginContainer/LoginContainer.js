@@ -4,6 +4,7 @@ import './LoginContainer.css'
 import axios from 'axios'
 import { Button, Form, Grid, Header, Image, Message, Segment, Icon } from 'semantic-ui-react'
 import cookie from 'react-cookies'
+import {URL} from '../../config'
 
 function LoginPage() {
   const [ID, setId] = useState("")
@@ -18,7 +19,7 @@ function LoginPage() {
   }
 
   const onSubmitHandler = (event) => {
-    axios.post(`http://54.159.40.14:8080/${ID}`,{
+    axios.post(`${URL}/${ID}`,{
       id: ID,
       pw : Password
     }).then((result) => {
@@ -30,7 +31,6 @@ function LoginPage() {
           path:'/',
           expires,
       })
-      console.log(window.location)
       window.location.href = `/${ID}`
     }
     else
@@ -38,8 +38,8 @@ function LoginPage() {
     }).catch((err) => {
       console.error(err)
     })
-
   }
+
 
   return (
     <Grid id="loginGrid" textAlign='center' style={{ height: '80%'}} >
