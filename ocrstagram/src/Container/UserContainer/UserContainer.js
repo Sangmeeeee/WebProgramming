@@ -2,7 +2,7 @@ import React from 'react'
 import './UserContainer'
 import cookie from 'react-cookies'
 import axios from 'axios'
-import { Posting, UserInfo, PostedImg } from '../../Components'
+import { Posting, UserInfo, PostedImg, Posted } from '../../Components'
 import { Button, Header, Image,Container, Divider, SearchResults } from 'semantic-ui-react'
 import {GridList, GridListTile} from '@material-ui/core'
 
@@ -17,7 +17,7 @@ class UserContainer extends React.Component{
     }
 
     componentDidMount = () => {
-        axios.post('http://localhost:8080/user/isok',{ // 사용자가 있나 없나 찾아봄
+        axios.post('http://54.159.40.14:8080/user/isok',{ // 사용자가 있나 없나 찾아봄
             userid : this.props.match.params.id
         })
         .then((result) => {
@@ -40,6 +40,7 @@ class UserContainer extends React.Component{
                    <PostedImg props={this.props}/>
 
                     <Posting props={this.props} id={this.state.id}/>
+                    <Posted props={this.props}/>
                 </div>
             )
         else if(this.state.isok === false) 

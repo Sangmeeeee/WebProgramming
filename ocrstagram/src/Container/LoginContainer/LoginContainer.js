@@ -18,7 +18,7 @@ function LoginPage() {
   }
 
   const onSubmitHandler = (event) => {
-    axios.post(`http://localhost:8080/${ID}`,{
+    axios.post(`http://54.159.40.14:8080/${ID}`,{
       id: ID,
       pw : Password
     }).then((result) => {

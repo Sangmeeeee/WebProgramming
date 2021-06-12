@@ -24,7 +24,7 @@ class Posting extends React.Component{
         let fd = new FormData()
         fd.append('img',this.state.img)
         document.getElementsByClassName('ocrLoading')[0].style.display = 'block'
-        axios.post(`http://localhost:8080/${this.state.id}/ocr`,fd,{
+        axios.post(`http://54.159.40.14:8080/${this.state.id}/ocr`,fd,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
@@ -47,7 +47,7 @@ class Posting extends React.Component{
         fd.append('img',this.state.img)
         fd.append('text',document.getElementsByClassName('ocrResult')[0].innerHTML)
 
-        axios.post(`http://localhost:8080/${this.state.id}/post`,fd,{
+        axios.post(`http://54.159.40.14:8080/${this.state.id}/post`,fd,{
             headers:{
                 'Content-Type': 'multipart/form-data'
             }
@@ -79,7 +79,7 @@ class Posting extends React.Component{
 
     handleTest = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/papago/translate',{
+        axios.post('http://54.159.40.14:8080/papago/translate',{
             text : document.getElementsByClassName('ocrResult')[0].innerHTML
         })
         .then((result) => {

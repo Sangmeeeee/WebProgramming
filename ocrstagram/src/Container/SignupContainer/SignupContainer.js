@@ -25,7 +25,7 @@ class SignupContainer extends React.Component {
 
   onSubmitHandler = (event) => {
     event.preventDefault()
-    axios.post(`http://localhost:8080/user/register`,{
+    axios.post(`http://54.159.40.14:8080/user/register`,{
       id : this.state.id,
       pw : this.state.pw
     }).then((result) => {

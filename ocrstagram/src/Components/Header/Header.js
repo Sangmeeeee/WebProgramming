@@ -7,31 +7,18 @@ var results = []
 
 class Header extends React.Component {
 
-  handleSearch = (e) => {
-    e.preventDefault()
-    axios.post('http://localhost:8080/user/search',{
-      search : e.target.value
-    })
-    .then((result) => {
-      // console.log(result.data)
+  // handleSearch = (e) => {
+  //   e.preventDefault()
+  //   axios.post('http://localhost:8080/user/search',{
+  //     search : e.target.value
+  //   })
+  //   .then((result) => {
 
-      // console.log(result.data)
-      // results = new Array()
-      var aaaaaa
-      aaaaaa = result.data.map((obj) => {
-        let results = []
-        console.log(obj)
-        for(let i = 0; i<result.data.length; i++){
-          results[i] = obj.userid
-        }
-        return results
-      })
-      // console.log(aaaaaa)
-    })
-    .catch((err) => {
-      console.error(err)
-    })
-  }
+  //   })
+  //   .catch((err) => {
+  //     console.error(err)
+  //   })
+  // }
 
 
   render() {
@@ -49,14 +36,14 @@ class Header extends React.Component {
           </a>
         </span>
         <Container textAlign='center'>
-            <Search
+            {/* <Search
               fluid
               icon="search"
               placeholder="Search..."
               results={results}
               resultRenderer={resRender}
               onSearchChange={this.handleSearch.bind(this)}
-            />
+            /> */}
         </Container>
       </div>
     )
