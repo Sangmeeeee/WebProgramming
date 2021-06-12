@@ -6,6 +6,7 @@
 
 후보
   - [주식사이트](https://www.investing.com/)
+  - [Instagram](https://www.instagram.com/)
 
 ## 팀원
 
