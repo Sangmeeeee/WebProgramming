@@ -29,9 +29,9 @@ papagoAPI
 
 React.js
 	
-<img src="./img/node.jpg" width="50%" height="auto">
+<img src="./img/node.png" width="50%" height="auto">
 
-Node.js
+Node.js with express
 	
 <img src="./img/amazon.png" width="50%" height="auto">
 
