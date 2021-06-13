@@ -25,7 +25,7 @@ tesseract.js
 
 papagoAPI
 	
-<img src="./img/react.png" width="50%" height="auto">
+<img src="./img/reactjs.png" width="50%" height="auto">
 
 React.js
 	
